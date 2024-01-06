@@ -1,0 +1,11 @@
+Model Information:
+* title:	AIM120 AMRAAM Air To Air Missile
+* source:	https://sketchfab.com/3d-models/aim120-amraam-air-to-air-missile-2bd6c745b93547aebbb27bf2b9e300af
+* author:	Batuhan KOÇ (https://sketchfab.com/batuhankoc)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "AIM120 AMRAAM Air To Air Missile" (https://sketchfab.com/3d-models/aim120-amraam-air-to-air-missile-2bd6c745b93547aebbb27bf2b9e300af) by Batuhan KOÇ (https://sketchfab.com/batuhankoc) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

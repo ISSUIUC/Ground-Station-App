@@ -1,0 +1,457 @@
+[
+    {
+        "id": "bd99fd47b3cc5944",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "cfd7e7f5844a8818",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "00ee5d68fafcd857",
+        "type": "mqtt-broker",
+        "name": "LocalM",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "2dc83c66bf212fb3",
+        "type": "mqtt-broker",
+        "name": "LocalHost",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "e3c5d0c864b697bf",
+        "type": "ui_group",
+        "name": "Default",
+        "tab": "44afd7416712b4ac",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "44afd7416712b4ac",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "4a7d03afb08c1d70",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "a06a3d16cb9be82e",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "100b3276a02c4126",
+        "type": "mqtt in",
+        "z": "bd99fd47b3cc5944",
+        "name": "",
+        "topic": "Flightdata",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "a06a3d16cb9be82e",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 200,
+        "y": 160,
+        "wires": [
+            [
+                "7d090c7165e42f71"
+            ]
+        ]
+    },
+    {
+        "id": "1a13c93378772490",
+        "type": "mqtt out",
+        "z": "bd99fd47b3cc5944",
+        "name": "",
+        "topic": "Flightdata",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "a06a3d16cb9be82e",
+        "x": 460,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "134024d07bfcf0ab",
+        "type": "inject",
+        "z": "bd99fd47b3cc5944",
+        "name": "Message",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"type\":\"data\",\"value\":{\"IMU_mx\":0.1367372182078336,\"IMU_my\":0.9906073556948704,\"IMU_mz\":0.13545289415393452,\"IMU_gx\":0.1367372182078336,\"IMU_gy\":0.9906073556948704,\"IMU_gz\":0.13545289415393452,\"KX_IMU_ax\":0.1367372182078336,\"KX_IMU_ay\":0.9906073556948704,\"KX_IMU_az\":0.13545289415393452,\"gps_lat\":41.77440973721821,\"gps_long\":-86.57144439264431,\"gps_alt\":42000,\"STE_ALT\":0.1367372182078336,\"STE_VEL\":0.9906073556948704,\"STE_ACC\":0.13545289415393452,\"STE_APO\":0.27090578830786904,\"BNO_YAW\":0.1367372182078336,\"BNO_PITCH\":0.9906073556948704,\"BNO_ROLL\":1.127344573902704,\"RSSI\":0.1367372182078336,\"sign\":\"qxqxlol\",\"FSM_state\":14,\"Voltage\":0.1367372182078336,\"TEMP\":0.1367372182078336,\"frequency\":0.1367372182078336,\"flap_extension\":7.244606616094805,\"pressure\":918}}",
+        "payloadType": "json",
+        "x": 220,
+        "y": 80,
+        "wires": [
+            [
+                "1a13c93378772490"
+            ]
+        ]
+    },
+    {
+        "id": "9ba71e216b7a026b",
+        "type": "debug",
+        "z": "bd99fd47b3cc5944",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 960,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "f0921f5ba4a27360",
+        "type": "file",
+        "z": "bd99fd47b3cc5944",
+        "name": "",
+        "filename": "/home/sreeniv/Groundstation/webpack/src/answer.csv",
+        "filenameType": "str",
+        "appendNewline": false,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 1080,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7d090c7165e42f71",
+        "type": "function",
+        "z": "bd99fd47b3cc5944",
+        "name": "value",
+        "func": "// Check if context.headersOutput is undefined (first time) or false\nif (context.headersOutput !== true) {\n    // Assuming the input message contains the data in msg.payload.value\n    var data = msg.payload.value;\n\n    // Extract headers\n    var headers = Object.keys(data);\n    var values = Object.values(data);\n\n    // Create CSV headers content\n    var csvHeaders = headers.join(',') + '\\n' + values.join(',') + '\\n';\n\n    \n    // Store headersOutput as true in context to indicate headers have been output\n    context.headersOutput = true;\n\n    // Create a new message with the CSV headers content\n    msg.payload = csvHeaders;\n\n    // Set the content type for the file\n    msg.headers = {\n        'Content-Type': 'text/csv',\n        'Content-Disposition': 'attachment; filename=data.csv'\n    };\n\n    return msg;\n} else if (msg.payload && typeof msg.payload === 'object') {\n    // Assuming the input message contains the data in msg.payload.value\n    var data = msg.payload.value;\n\n    // Extract values\n    var values = Object.values(data);\n\n    // Create CSV values content\n    var csvValues = values.join(',') + '\\n';\n\n    // Create a new message with the CSV values content\n    msg.payload = csvValues;\n\n    return msg;\n} else {\n    // If msg.payload is undefined, null, or not an object, log an error\n    console.error('Invalid input data.');\n\n    // You may choose to handle this case differently based on your flow requirements\n    return null;  // or return msg; or throw new Error('Invalid input data.');\n}\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 320,
+        "wires": [
+            [
+                "9ba71e216b7a026b",
+                "f0921f5ba4a27360"
+            ]
+        ]
+    },
+    {
+        "id": "44100f488d313d5a",
+        "type": "mqtt in",
+        "z": "cfd7e7f5844a8818",
+        "name": "",
+        "topic": "#",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "2dc83c66bf212fb3",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 110,
+        "y": 80,
+        "wires": [
+            [
+                "d283963ea88ed642",
+                "ceacad5b3ec1f282"
+            ]
+        ]
+    },
+    {
+        "id": "d283963ea88ed642",
+        "type": "debug",
+        "z": "cfd7e7f5844a8818",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 430,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "45de98d03abe1cf0",
+        "type": "ui_gauge",
+        "z": "cfd7e7f5844a8818",
+        "name": "",
+        "group": "e3c5d0c864b697bf",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Voltage Gauge",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "4105",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 460,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "bbf517077c5c0f6c",
+        "type": "ui_chart",
+        "z": "cfd7e7f5844a8818",
+        "name": "",
+        "group": "e3c5d0c864b697bf",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "label": "Voltage Chart",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "4095",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "x": 460,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ceacad5b3ec1f282",
+        "type": "json",
+        "z": "cfd7e7f5844a8818",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 290,
+        "y": 160,
+        "wires": [
+            [
+                "45de98d03abe1cf0",
+                "bbf517077c5c0f6c"
+            ]
+        ]
+    }
+]
