@@ -119,7 +119,7 @@ Cesium.Ion.defaultAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOi
 var viewer = new Cesium.Viewer('cesiumContainer');
 
 
-const mqttClient = new Paho.Client('192.168.68.113', 8083, macAddress);
+const mqttClient = new Paho.Client('10.192.154.230', 8083, macAddress);
 const mqttTopic = 'Flightdata';
 
 mqttClient.onConnectionLost = (responseObject) => {
@@ -162,11 +162,13 @@ async function updatePositionWithMqttData(flightData) {
     const currentTime = viewer.clock.currentTime;
     const position = Cesium.Cartesian3.fromDegrees(gps_long, gps_lat, gps_alt);
     viewer.entities.getById('dynamicEntity').position.addSample(currentTime, position);
-    viewer.entities.getById('dynamicEntity').orientation = new Cesium.VelocityOrientationProperty(
-        new Cesium.ConstantPositionProperty(position),
-        Cesium.Ellipsoid.WGS84,
-        Cesium.Cartesian3.fromDegrees(BNO_YAW, BNO_PITCH, BNO_ROLL)
-      );
+
+    const heading = Cesium.Math.toRadians(BNO_YAW * 100);
+    const pitch = Cesium.Math.toRadians(BNO_PITCH * 100);
+    const roll = Cesium.Math.toRadians(BNO_ROLL * 100);
+    const hpr = new Cesium.HeadingPitchRoll(heading, pitch, roll);
+    const orientation = Cesium.Transforms.headingPitchRollQuaternion(position, hpr);
+    viewer.entities.getById('dynamicEntity').orientation = orientation;
   } catch (error) {
     console.log('Error updating position with MQTT data:', error);
   }
@@ -184,10 +186,12 @@ async function updatePositionWithMqttData(flightData) {
       const positionProperty = new Cesium.SampledPositionProperty();
       positionProperty.addSample(startTime, Cesium.Cartesian3.fromDegrees(-88.2434, 40.1164, 0));
       positionProperty.addSample(endTime, Cesium.Cartesian3.fromDegrees(-88.2434, 40.1164, 300000));
+      
   
       const entity = viewer.entities.add({
         id: 'dynamicEntity', // Add an ID to easily identify and update the entity
         position: positionProperty,
+        //orientation:orientation,
         model: {
           uri: resource,
           scale: 0.01,
