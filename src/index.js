@@ -149,6 +149,8 @@ function onConnect() {
   mqttClient.subscribe(mqttTopic);
 }
 
+
+
 // Function to update position based on MQTT data
 async function updatePositionWithMqttData(flightData) {
   try {
@@ -163,12 +165,15 @@ async function updatePositionWithMqttData(flightData) {
     const position = Cesium.Cartesian3.fromDegrees(gps_long, gps_lat, gps_alt);
     viewer.entities.getById('dynamicEntity').position.addSample(currentTime, position);
 
-    const heading = Cesium.Math.toRadians(BNO_YAW * 100);
-    const pitch = Cesium.Math.toRadians(BNO_PITCH * 100);
-    const roll = Cesium.Math.toRadians(BNO_ROLL * 100);
+    const heading = Cesium.Math.toRadians(BNO_YAW * (180/Math.PI));
+    const pitch = Cesium.Math.toRadians(BNO_PITCH * (180/Math.PI));
+    const roll = Cesium.Math.toRadians(BNO_ROLL * (180/Math.PI));
+
+    
     const hpr = new Cesium.HeadingPitchRoll(heading, pitch, roll);
     const orientation = Cesium.Transforms.headingPitchRollQuaternion(position, hpr);
     viewer.entities.getById('dynamicEntity').orientation = orientation;
+
   } catch (error) {
     console.log('Error updating position with MQTT data:', error);
   }
