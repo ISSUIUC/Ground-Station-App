@@ -1,7 +1,14 @@
 from flask import Flask, render_template, Response
 import cv2
+import threading
+import os
 
 app = Flask(__name__)
+
+# Global variables
+frame_dir = 'frames'
+if not os.path.exists(frame_dir):
+    os.makedirs(frame_dir)
 
 def generate_frames():
     cap = cv2.VideoCapture(0)  # Using the default webcam (index 0)
@@ -11,10 +18,14 @@ def generate_frames():
         if not success:
             break
 
-        ret, buffer = cv2.imencode('.jpg', frame)
-        frame = buffer.tobytes()
+        frame_path = os.path.join(frame_dir, 'frame.jpg')
+        cv2.imwrite(frame_path, frame)
+
+        with open(frame_path, 'rb') as f:
+            frame_bytes = f.read()
+
         yield (b'--frame\r\n'
-               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+               b'Content-Type: image/jpeg\r\n\r\n' + frame_bytes + b'\r\n')
 
 @app.route('/')
 def index():
