@@ -1,39 +1,49 @@
 from flask import Flask, render_template, Response
 import cv2
 import threading
-import os
+from gevent.pywsgi import WSGIServer
 
 app = Flask(__name__)
 
-# Global variables
-frame_dir = 'frames'
-if not os.path.exists(frame_dir):
-    os.makedirs(frame_dir)
+class Camera:
+    def __init__(self):
+        self.cap = cv2.VideoCapture(0)  # Using the default webcam (index 0)
+        self.lock = threading.Lock()
+        self.frames = []
 
-def generate_frames():
-    cap = cv2.VideoCapture(0)  # Using the default webcam (index 0)
+    def capture_frames(self):
+        while True:
+            success, frame = self.cap.read()
+            if not success:
+                break
+            ret, buffer = cv2.imencode('.jpg', frame)
+            frame_bytes = buffer.tobytes()
+            with self.lock:
+                self.frames = [frame_bytes]
 
-    while True:
-        success, frame = cap.read()
-        if not success:
-            break
+    def get_frame(self):
+        with self.lock:
+            return self.frames[-1]
 
-        frame_path = os.path.join(frame_dir, 'frame.jpg')
-        cv2.imwrite(frame_path, frame)
-
-        with open(frame_path, 'rb') as f:
-            frame_bytes = f.read()
-
-        yield (b'--frame\r\n'
-               b'Content-Type: image/jpeg\r\n\r\n' + frame_bytes + b'\r\n')
+camera = Camera()
+thread = threading.Thread(target=camera.capture_frames)
+thread.daemon = True
+thread.start()
 
 @app.route('/')
 def index():
     return render_template('index.html')
+
+def generate_frames():
+    while True:
+        frame = camera.get_frame()
+        yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
 @app.route('/video_feed')
 def video_feed():
     return Response(generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5001, debug=True)  # Run on all network interfaces
+    http_server = WSGIServer(('0.0.0.0', 5001), app)
+    http_server.serve_forever()
