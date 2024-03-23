@@ -1,175 +1,1098 @@
 [
     {
-        "id": "a3832ee5d563a633",
+        "id": "97095cca6f5ef9e5",
         "type": "tab",
-        "label": "CONTROL DASHBOARD",
+        "label": "LIVE LOGIC",
         "disabled": false,
         "info": "",
         "env": []
     },
     {
-        "id": "7dcfe20c6c94d4cf",
-        "type": "inject",
-        "z": "a3832ee5d563a633",
-        "name": "ENABLE GRAPHS",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "{\"data\":true,\"context\":\"enable_graph\"}",
-        "payloadType": "json",
-        "x": 230,
+        "id": "867723775990be41",
+        "type": "mqtt in",
+        "z": "97095cca6f5ef9e5",
+        "name": "",
+        "topic": "Flightdata",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "22f394e5.96b87c",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 80,
         "y": 180,
         "wires": [
             [
-                "f2dc6c1da6e5a2f2",
-                "ce9a21b3062f0f54",
-                "eac46414ffdab55a"
+                "c22b25a8224aaa57",
+                "ac80dfc4f84e6025",
+                "e02435ad29d95b16",
+                "3ddcbfedd9bacf62",
+                "8b33b022aa9bc7ab",
+                "b1fba2b5dc767290",
+                "ca7d4cd395f4333b",
+                "fcbd46ed2e2ae0a5",
+                "d9201c9b5b8d1421"
             ]
         ]
     },
     {
-        "id": "f2dc6c1da6e5a2f2",
-        "type": "link out",
-        "z": "a3832ee5d563a633",
-        "name": "Enable graph",
-        "mode": "link",
-        "links": [
-            "954b99f22c5618f0",
-            "b5faea71e6e69eb2"
-        ],
-        "x": 425,
-        "y": 240,
+        "id": "ac80dfc4f84e6025",
+        "type": "debug",
+        "z": "97095cca6f5ef9e5",
+        "name": "debug 1",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 320,
+        "y": 120,
         "wires": []
     },
     {
-        "id": "3e3b420f57252746",
-        "type": "inject",
-        "z": "a3832ee5d563a633",
-        "name": "DISABLE GRAPHS",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "{\"data\":false,\"context\":\"enable_graph\"}",
-        "payloadType": "json",
-        "x": 230,
-        "y": 240,
-        "wires": [
-            [
-                "f2dc6c1da6e5a2f2",
-                "b459043870f3a96e"
-            ]
-        ]
-    },
-    {
-        "id": "ce9a21b3062f0f54",
-        "type": "change",
-        "z": "a3832ee5d563a633",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "Navigate to Home > Graphs to view graph data.",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 560,
+        "id": "c22b25a8224aaa57",
+        "type": "function",
+        "z": "97095cca6f5ef9e5",
+        "name": "GPS Altitude",
+        "func": "// Assuming msg.payload is the provided object\nconst param_decode = [\"gps_alt\"];\nconst output_context = \"altitude\"\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.type === \"data\" && msg.payload.value) {\n    let new_payload = {};\n    param_decode.forEach((param) => {\n        if(typeof msg.payload.value[param] === \"undefined\") {\n            msg.payload = \"Error: Missing params\";\n            return msg;\n        } else {\n            new_payload[param] = msg.payload.value[param];\n        }\n    });\n    \n    if(param_decode.length == 1) {\n        // Simple case, if only 1 param\n        new_payload = new_payload[param_decode[0]];\n    } \n\n    // Context to allow for multiple inputs down the line\n    msg.payload = {context: output_context, data: new_payload};\n    \n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"Error: Invalid payload structure\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
         "y": 180,
         "wires": [
             [
-                "381b4b8ca49815e1"
+                "eac137389a822602"
             ]
         ]
     },
     {
-        "id": "381b4b8ca49815e1",
-        "type": "ui_toast",
-        "z": "a3832ee5d563a633",
-        "position": "top right",
-        "displayTime": "5",
-        "highlight": "",
-        "sendall": true,
-        "outputs": 0,
-        "ok": "OK",
-        "cancel": "",
-        "raw": false,
-        "className": "",
-        "topic": "Graphs enabled!",
-        "name": "",
+        "id": "eac137389a822602",
+        "type": "function",
+        "z": "97095cca6f5ef9e5",
+        "name": "Clean Float",
+        "func": "// Returns a properly formatted float (:.1f), 1 decimal precision\n\nfunction isNumber(value) {\n  return typeof value === 'number';\n}\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.data && isNumber(msg.payload.data)) {\n    // Round to nearest tenth\n    msg.payload = Math.round(msg.payload.data * 10) / 10;\n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"ERR\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
         "x": 780,
         "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bc39ef2483029a19",
+        "type": "ui_gauge",
+        "z": "97095cca6f5ef9e5",
+        "name": "",
+        "group": "69c7e0bf55ba177e",
+        "order": 0,
+        "width": "7",
+        "height": "7",
+        "gtype": "gage",
+        "title": "Altitude",
+        "label": "ft",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "40000",
+        "colors": [
+            "#800000",
+            "#ff0000",
+            "#ff8080"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1100,
+        "y": 240,
         "wires": []
     },
     {
-        "id": "c2bed5ab7421610c",
+        "id": "e02435ad29d95b16",
+        "type": "function",
+        "z": "97095cca6f5ef9e5",
+        "name": "Pressure",
+        "func": "// Assuming msg.payload is the provided object\nconst param_decode = [\"pressure\"];\nconst output_context = \"pressure\"\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.type === \"data\" && msg.payload.value) {\n    let new_payload = {};\n    param_decode.forEach((param) => {\n        if(typeof msg.payload.value[param] === \"undefined\") {\n            msg.payload = \"Error: Missing params\";\n            return msg;\n        } else {\n            new_payload[param] = msg.payload.value[param];\n        }\n    });\n    \n    if(param_decode.length == 1) {\n        // Simple case, if only 1 param\n        new_payload = new_payload[param_decode[0]];\n    } \n\n    // Context to allow for multiple inputs down the line\n    msg.payload = {context: output_context, data: new_payload};\n    \n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"Error: Invalid payload structure\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 240,
+        "wires": [
+            [
+                "91b1df22502e9cc4"
+            ]
+        ]
+    },
+    {
+        "id": "960e562150673092",
+        "type": "function",
+        "z": "97095cca6f5ef9e5",
+        "name": "Clean Float",
+        "func": "// Returns a properly formatted float (:.1f), 1 decimal precision\n\nfunction isNumber(value) {\n  return typeof value === 'number';\n}\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.data && isNumber(msg.payload.data)) {\n    // Round to nearest tenth\n    msg.payload = Math.round(msg.payload.data * 10) / 10;\n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"ERR\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 780,
+        "y": 240,
+        "wires": [
+            [
+                "bc39ef2483029a19",
+                "ce81cdf3e083e965"
+            ]
+        ]
+    },
+    {
+        "id": "91b1df22502e9cc4",
+        "type": "function",
+        "z": "97095cca6f5ef9e5",
+        "name": "Baro Alt",
+        "func": "// Store state\ncontext.temperature = context.temperature || 0.0;\ncontext.pressure = context.pressure || 0.0;\n\nfunction isNumber(value) {\n  return typeof value === 'number';\n}\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.context && msg.payload.data && isNumber(msg.payload.data)) {\n\n  // Decode inputs\n  if (msg.payload.context === \"pressure\") {\n    context.pressure = msg.payload.data\n  }\n\n  if (msg.payload.context === \"temperature\") {\n    context.temperature = msg.payload.data\n  }\n\n  // msg.payload = context.temperature;\n  let alt = -Math.log(context.pressure * 0.000987) * (context.temperature + 273.15) * 29.254;\n  msg.payload = {context: \"barometric_alt\", data: alt};\n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"ERR\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 240,
+        "wires": [
+            [
+                "960e562150673092",
+                "d065e7e98dc6840d"
+            ]
+        ]
+    },
+    {
+        "id": "3ddcbfedd9bacf62",
+        "type": "function",
+        "z": "97095cca6f5ef9e5",
+        "name": "Temperature",
+        "func": "// Assuming msg.payload is the provided object\nconst param_decode = [\"TEMP\"];\nconst output_context = \"temperature\"\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.type === \"data\" && msg.payload.value) {\n    let new_payload = {};\n    param_decode.forEach((param) => {\n        if(typeof msg.payload.value[param] === \"undefined\") {\n            msg.payload = \"Error: Missing params\";\n            return msg;\n        } else {\n            new_payload[param] = msg.payload.value[param];\n        }\n    });\n    \n    if(param_decode.length == 1) {\n        // Simple case, if only 1 param\n        new_payload = new_payload[param_decode[0]];\n    } \n\n    // Context to allow for multiple inputs down the line\n    msg.payload = {context: output_context, data: new_payload};\n    \n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"Error: Invalid payload structure\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 300,
+        "wires": [
+            [
+                "91b1df22502e9cc4"
+            ]
+        ]
+    },
+    {
+        "id": "ca9d6370c02863b9",
+        "type": "function",
+        "z": "97095cca6f5ef9e5",
+        "name": "Clean Float",
+        "func": "// Returns a properly formatted float (:.1f), 1 decimal precision\n\nfunction isNumber(value) {\n  return typeof value === 'number';\n}\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.data) {\n    // Round to nearest tenth\n    msg.payload = Math.round(msg.payload.data * 10) / 10;\n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"ERR\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 790,
+        "y": 420,
+        "wires": [
+            [
+                "b3c78bf7856b83f1"
+            ]
+        ]
+    },
+    {
+        "id": "b3c78bf7856b83f1",
+        "type": "ui_gauge",
+        "z": "97095cca6f5ef9e5",
+        "name": "",
+        "group": "69c7e0bf55ba177e",
+        "order": 0,
+        "width": "3",
+        "height": "2",
+        "gtype": "gage",
+        "title": "Velocity",
+        "label": "ft/s",
+        "format": "{{value}}",
+        "min": "-200",
+        "max": "2000",
+        "colors": [
+            "#800000",
+            "#ff0000",
+            "#ff8080"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1100,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "8b33b022aa9bc7ab",
+        "type": "function",
+        "z": "97095cca6f5ef9e5",
+        "name": "Yaw",
+        "func": "// Assuming msg.payload is the provided object\nconst param_decode = [\"BNO_YAW\"];\nconst output_context = \"yaw\"\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.type === \"data\" && msg.payload.value) {\n    let new_payload = {};\n    param_decode.forEach((param) => {\n        if(typeof msg.payload.value[param] === \"undefined\") {\n            msg.payload = \"Error: Missing params\";\n            return msg;\n        } else {\n            new_payload[param] = msg.payload.value[param];\n        }\n    });\n    \n    if(param_decode.length == 1) {\n        // Simple case, if only 1 param\n        new_payload = new_payload[param_decode[0]];\n    } \n\n    // Context to allow for multiple inputs down the line\n    msg.payload = {context: output_context, data: new_payload};\n    \n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"Error: Invalid payload structure\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 520,
+        "wires": [
+            [
+                "45447eec9596f9e9"
+            ]
+        ]
+    },
+    {
+        "id": "b1fba2b5dc767290",
+        "type": "function",
+        "z": "97095cca6f5ef9e5",
+        "name": "Pitch",
+        "func": "// Assuming msg.payload is the provided object\nconst param_decode = [\"BNO_PITCH\"];\nconst output_context = \"pitch\"\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.type === \"data\" && msg.payload.value) {\n    let new_payload = {};\n    param_decode.forEach((param) => {\n        if(typeof msg.payload.value[param] === \"undefined\") {\n            msg.payload = \"Error: Missing params\";\n            return msg;\n        } else {\n            new_payload[param] = msg.payload.value[param];\n        }\n    });\n    \n    if(param_decode.length == 1) {\n        // Simple case, if only 1 param\n        new_payload = new_payload[param_decode[0]];\n    } \n\n    // Context to allow for multiple inputs down the line\n    msg.payload = {context: output_context, data: new_payload};\n    \n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"Error: Invalid payload structure\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 560,
+        "wires": [
+            [
+                "45447eec9596f9e9"
+            ]
+        ]
+    },
+    {
+        "id": "ca7d4cd395f4333b",
+        "type": "function",
+        "z": "97095cca6f5ef9e5",
+        "name": "Roll",
+        "func": "// Assuming msg.payload is the provided object\nconst param_decode = [\"BNO_ROLL\"];\nconst output_context = \"roll\"\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.type === \"data\" && msg.payload.value) {\n    let new_payload = {};\n    param_decode.forEach((param) => {\n        if(typeof msg.payload.value[param] === \"undefined\") {\n            msg.payload = \"Error: Missing params\";\n            return msg;\n        } else {\n            new_payload[param] = msg.payload.value[param];\n        }\n    });\n    \n    if(param_decode.length == 1) {\n        // Simple case, if only 1 param\n        new_payload = new_payload[param_decode[0]];\n    } \n\n    // Context to allow for multiple inputs down the line\n    msg.payload = {context: output_context, data: new_payload};\n    \n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"Error: Invalid payload structure\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 600,
+        "wires": [
+            [
+                "45447eec9596f9e9"
+            ]
+        ]
+    },
+    {
+        "id": "45447eec9596f9e9",
+        "type": "function",
+        "z": "97095cca6f5ef9e5",
+        "name": "Angle",
+        "func": "// Store state\ncontext.yaw = context.yaw || 0.0;\ncontext.pitch = context.pitch || 0.0;\ncontext.roll = context.roll || 0.0;\n\nfunction isNumber(value) {\n  return typeof value === 'number';\n}\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.context) {\n\n  // Decode inputs\n  if (msg.payload.context === \"yaw\") {\n    context.yaw = msg.payload.data\n  }\n\n  if (msg.payload.context === \"pitch\") {\n    context.pitch = msg.payload.data\n  }\n\n  if (msg.payload.context === \"roll\") {\n    context.roll = msg.payload.data\n  }\n\n  // msg.payload = context.temperature;\n  // let angle = context.pitch**2 + context.yaw**2;\n  // this is wrong, we should fix it!\n  let alpha = context.yaw;\n\n  let angle = Math.abs((57.2958 * alpha) - 90);\n  msg.payload = {context: \"angle\", data: angle};\n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"ERR DECODE \" + msg.payload.context;\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 560,
+        "wires": [
+            [
+                "143d402411ea4bc5"
+            ]
+        ]
+    },
+    {
+        "id": "143d402411ea4bc5",
+        "type": "function",
+        "z": "97095cca6f5ef9e5",
+        "name": "Clean Float",
+        "func": "// Returns a properly formatted float (:.1f), 1 decimal precision\n\nfunction isNumber(value) {\n  return typeof value === 'number';\n}\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.data && isNumber(msg.payload.data)) {\n    // Round to nearest tenth\n    msg.payload = Math.round(msg.payload.data * 10) / 10;\n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"ERR\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 790,
+        "y": 560,
+        "wires": [
+            [
+                "d8c19635cecc0d02"
+            ]
+        ]
+    },
+    {
+        "id": "d8c19635cecc0d02",
+        "type": "ui_gauge",
+        "z": "97095cca6f5ef9e5",
+        "name": "",
+        "group": "69c7e0bf55ba177e",
+        "order": 0,
+        "width": "3",
+        "height": "2",
+        "gtype": "gage",
+        "title": "Angle",
+        "label": "",
+        "format": "{{value}}°",
+        "min": "-90",
+        "max": "90",
+        "colors": [
+            "#ff0000",
+            "#ff8080",
+            "#ff0000"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": true,
+        "className": "",
+        "x": 1090,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "fcbd46ed2e2ae0a5",
+        "type": "function",
+        "z": "97095cca6f5ef9e5",
+        "name": "RSSI",
+        "func": "// Assuming msg.payload is the provided object\nconst param_decode = [\"RSSI\"];\nconst output_context = \"rssi\"\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.type === \"data\" && msg.payload.value) {\n    let new_payload = {};\n    param_decode.forEach((param) => {\n        if(typeof msg.payload.value[param] === \"undefined\") {\n            msg.payload = \"Error: Missing params\";\n            return msg;\n        } else {\n            new_payload[param] = msg.payload.value[param];\n        }\n    });\n    \n    if(param_decode.length == 1) {\n        // Simple case, if only 1 param\n        new_payload = new_payload[param_decode[0]];\n    } \n\n    // Context to allow for multiple inputs down the line\n    msg.payload = {context: output_context, data: new_payload};\n    \n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"Error: Invalid payload structure\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 700,
+        "wires": [
+            [
+                "c5683f7012cd3a14"
+            ]
+        ]
+    },
+    {
+        "id": "c5683f7012cd3a14",
+        "type": "function",
+        "z": "97095cca6f5ef9e5",
+        "name": "Connection",
+        "func": "// Store state\ncontext.rssi = context.rssi || -999.0;\n\nfunction isNumber(value) {\n  return typeof value === 'number';\n}\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.context && msg.payload.data && isNumber(msg.payload.data)) {\n\n  // Decode inputs\n  if (msg.payload.context === \"rssi\") {\n    context.rssi = msg.payload.data;\n  }\n\n  let connection = \"NONE\";\n  let color = \"#bf0d00\";\n  if(context.rssi > -140) {\n    connection = \"WEAK\";\n    color = \"#ff9e03\";\n  }\n\n  if(context.rssi > -80) {\n    connection = \"OK\";\n    color = \"#ffff03\";\n  }\n\n  if(context.rssi > -55) {\n    connection = \"GOOD\";\n    color = \"#a7ff4f\";\n  }\n\n  if(context.rssi > -30) {\n    connection = \"STRONG\";\n    color = \"#3dff03\";\n  }\n\n  msg.color = color;\n  \n  msg.payload = connection;\n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"ERR\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 700,
+        "wires": [
+            [
+                "447ca5471a5cf79d"
+            ]
+        ]
+    },
+    {
+        "id": "447ca5471a5cf79d",
+        "type": "ui_text",
+        "z": "97095cca6f5ef9e5",
+        "group": "69c7e0bf55ba177e",
+        "order": 0,
+        "width": "10",
+        "height": "2",
+        "name": "",
+        "label": "Connection",
+        "format": "<font color='{{msg.color}}'>{{msg.payload}}</font>",
+        "layout": "col-center",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 1110,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "d9201c9b5b8d1421",
+        "type": "function",
+        "z": "97095cca6f5ef9e5",
+        "name": "Pyro",
+        "func": "// Assuming msg.payload is the provided object\nconst param_decode = [\"Pyro1\", \"Pyro2\", \"Pyro3\", \"Pyro4\",\n \"Pyro1Firing\", \"Pyro2Firing\", \"Pyro3Firing\", \"Pyro4Firing\",\n \"Continuity1\", \"Continuity2\", \"Continuity3\", \"Continuity4\"];\nconst output_context = \"pyro\"\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.type === \"data\" && msg.payload.value) {\n    let new_payload = {};\n    param_decode.forEach((param) => {\n        if(typeof msg.payload.value[param] === \"undefined\") {\n            msg.payload = \"Error: Missing params\";\n            return msg;\n        } else {\n            new_payload[param] = msg.payload.value[param];\n        }\n    });\n    \n    if(param_decode.length == 1) {\n        // Simple case, if only 1 param\n        new_payload = new_payload[param_decode[0]];\n    } \n\n    // Context to allow for multiple inputs down the line\n    msg.payload = {context: output_context, data: new_payload};\n    \n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"Error: Invalid payload structure\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 800,
+        "wires": [
+            [
+                "9236ddb7dba5e3e6",
+                "c6dc7e5e82c8b06d",
+                "88ca0c7604eac3ce",
+                "78c6af78ad335e2c"
+            ]
+        ]
+    },
+    {
+        "id": "9236ddb7dba5e3e6",
+        "type": "function",
+        "z": "97095cca6f5ef9e5",
+        "name": "Pyro1",
+        "func": "// Store state\ncontext.pyrostate = context.pyrostate || null;\nconst pyro_num = 1;\n\nfunction isNumber(value) {\n  return typeof value === 'number';\n}\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.context && msg.payload.data) {\n\n  // Decode inputs\n  if (msg.payload.context === \"pyro\") {\n    context.pyrostate = msg.payload.data\n  }\n\n  let this_pyrostate = {pyro: context.pyrostate[`Pyro${pyro_num}`],\n                        continuity: context.pyrostate[`Continuity${pyro_num}`],\n                        firing: context.pyrostate[`Pyro${pyro_num}Firing`]}\n  \n  msg.payload = {context: `single_pyro`, data: this_pyrostate};\n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"ERR\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 800,
+        "wires": [
+            [
+                "149dbb7438ed47c8"
+            ]
+        ]
+    },
+    {
+        "id": "149dbb7438ed47c8",
+        "type": "function",
+        "z": "97095cca6f5ef9e5",
+        "name": "Pyro Decode",
+        "func": "// Store state\ncontext.pyrostate = context.pyrostate || null;\n\nfunction isNumber(value) {\n  return typeof value === 'number';\n}\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.context && msg.payload.data) {\n\n  // Decode inputs\n  if (msg.payload.context === \"single_pyro\") {\n    context.pyrostate = msg.payload.data\n  }\n\n  let pyro_status = \"OPEN\";\n  let color = \"red\";\n\n\n  if(context.pyrostate.continuity > 0.5) {\n    pyro_status = \"READY\";\n    color = \"lime\";\n  } \n  \n  msg.payload = {color: color, st: pyro_status, v: context.pyrostate.continuity.toFixed(1), f: context.pyrostate.firing};\n  \n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"ERR\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 800,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c6dc7e5e82c8b06d",
+        "type": "function",
+        "z": "97095cca6f5ef9e5",
+        "name": "Pyro2",
+        "func": "// Store state\ncontext.pyrostate = context.pyrostate || null;\nconst pyro_num = 2;\n\nfunction isNumber(value) {\n  return typeof value === 'number';\n}\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.context && msg.payload.data) {\n\n  // Decode inputs\n  if (msg.payload.context === \"pyro\") {\n    context.pyrostate = msg.payload.data\n  }\n\n  let this_pyrostate = {pyro: context.pyrostate[`Pyro${pyro_num}`],\n                        continuity: context.pyrostate[`Continuity${pyro_num}`],\n                        firing: context.pyrostate[`Pyro${pyro_num}Firing`]}\n  \n  msg.payload = {context: `single_pyro`, data: this_pyrostate};\n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"ERR\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 860,
+        "wires": [
+            [
+                "01cb81b597516349"
+            ]
+        ]
+    },
+    {
+        "id": "88ca0c7604eac3ce",
+        "type": "function",
+        "z": "97095cca6f5ef9e5",
+        "name": "Pyro3",
+        "func": "// Store state\ncontext.pyrostate = context.pyrostate || null;\nconst pyro_num = 3;\n\nfunction isNumber(value) {\n  return typeof value === 'number';\n}\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.context && msg.payload.data) {\n\n  // Decode inputs\n  if (msg.payload.context === \"pyro\") {\n    context.pyrostate = msg.payload.data\n  }\n\n  let this_pyrostate = {pyro: context.pyrostate[`Pyro${pyro_num}`],\n                        continuity: context.pyrostate[`Continuity${pyro_num}`],\n                        firing: context.pyrostate[`Pyro${pyro_num}Firing`]}\n  \n  msg.payload = {context: `single_pyro`, data: this_pyrostate};\n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"ERR\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 920,
+        "wires": [
+            [
+                "d3fde95ff5e1bbbc"
+            ]
+        ]
+    },
+    {
+        "id": "78c6af78ad335e2c",
+        "type": "function",
+        "z": "97095cca6f5ef9e5",
+        "name": "Pyro4",
+        "func": "// Store state\ncontext.pyrostate = context.pyrostate || null;\nconst pyro_num = 4;\n\nfunction isNumber(value) {\n  return typeof value === 'number';\n}\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.context && msg.payload.data) {\n\n  // Decode inputs\n  if (msg.payload.context === \"pyro\") {\n    context.pyrostate = msg.payload.data\n  }\n\n  let this_pyrostate = {pyro: context.pyrostate[`Pyro${pyro_num}`],\n                        continuity: context.pyrostate[`Continuity${pyro_num}`],\n                        firing: context.pyrostate[`Pyro${pyro_num}Firing`]}\n  \n  msg.payload = {context: `single_pyro`, data: this_pyrostate};\n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"ERR\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 980,
+        "wires": [
+            [
+                "735cf9a71be68667"
+            ]
+        ]
+    },
+    {
+        "id": "01cb81b597516349",
+        "type": "function",
+        "z": "97095cca6f5ef9e5",
+        "name": "Pyro Decode",
+        "func": "// Store state\ncontext.pyrostate = context.pyrostate || null;\n\nfunction isNumber(value) {\n  return typeof value === 'number';\n}\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.context && msg.payload.data) {\n\n  // Decode inputs\n  if (msg.payload.context === \"single_pyro\") {\n    context.pyrostate = msg.payload.data\n  }\n\n  let pyro_status = \"OPEN\";\n  let color = \"red\";\n\n\n  if(context.pyrostate.continuity > 0.5) {\n    pyro_status = \"READY\";\n    color = \"lime\";\n  } \n  \n  msg.payload = {color: color, st: pyro_status, v: context.pyrostate.continuity.toFixed(1), f: context.pyrostate.firing};\n  \n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"ERR\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 860,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d3fde95ff5e1bbbc",
+        "type": "function",
+        "z": "97095cca6f5ef9e5",
+        "name": "Pyro Decode",
+        "func": "// Store state\ncontext.pyrostate = context.pyrostate || null;\n\nfunction isNumber(value) {\n  return typeof value === 'number';\n}\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.context && msg.payload.data) {\n\n  // Decode inputs\n  if (msg.payload.context === \"single_pyro\") {\n    context.pyrostate = msg.payload.data\n  }\n\n  let pyro_status = \"OPEN\";\n  let color = \"red\";\n\n\n  if(context.pyrostate.continuity > 0.5) {\n    pyro_status = \"READY\";\n    color = \"lime\";\n  } \n  \n  msg.payload = {color: color, st: pyro_status, v: context.pyrostate.continuity.toFixed(1), f: context.pyrostate.firing};\n  \n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"ERR\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 920,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "735cf9a71be68667",
+        "type": "function",
+        "z": "97095cca6f5ef9e5",
+        "name": "Pyro Decode",
+        "func": "// Store state\ncontext.pyrostate = context.pyrostate || null;\n\nfunction isNumber(value) {\n  return typeof value === 'number';\n}\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.context && msg.payload.data) {\n\n  // Decode inputs\n  if (msg.payload.context === \"single_pyro\") {\n    context.pyrostate = msg.payload.data\n  }\n\n  let pyro_status = \"OPEN\";\n  let color = \"red\";\n\n\n  if(context.pyrostate.continuity > 0.5) {\n    pyro_status = \"READY\";\n    color = \"lime\";\n  } \n  \n  msg.payload = {color: color, st: pyro_status, v: context.pyrostate.continuity.toFixed(1), f: context.pyrostate.firing};\n  \n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"ERR\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 980,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1178e4f828bd9e78",
+        "type": "ui_template",
+        "z": "97095cca6f5ef9e5",
+        "group": "ca2272c3.e8396",
+        "name": "cesium",
+        "order": 0,
+        "width": "10",
+        "height": "9",
+        "format": "<iframe src=\"http://192.168.0.69:5001/\" style=\"width:100%; height:100%;\"></iframe>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 520,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bf155ba88336211d",
+        "type": "ui_chart",
+        "z": "97095cca6f5ef9e5",
+        "name": "",
+        "group": "5a4020c2.81e",
+        "order": 0,
+        "width": "14",
+        "height": "5",
+        "label": "Altitude over time",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "NO DATA",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1290,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9ea9a37985fcd63c",
+        "type": "ui_button",
+        "z": "97095cca6f5ef9e5",
+        "name": "",
+        "group": "ca2272c3.e8396",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Full Screen",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "fa-tv",
+        "payload": "redirect",
+        "payloadType": "str",
+        "topic": "fs",
+        "topicType": "msg",
+        "x": 690,
+        "y": 120,
+        "wires": [
+            [
+                "b7aacb938d9f9307"
+            ]
+        ]
+    },
+    {
+        "id": "f1a23952bca72074",
+        "type": "ui_template",
+        "z": "97095cca6f5ef9e5",
+        "group": "ca2272c3.e8396",
+        "name": "",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "format": "<script>\n(function(scope) {\n    scope.$watch('msg.payload', function(data) {\n        if(data === \"redirect\") {\n          // console.log(\"AAAA\", data);\n          window.location.href = \"http://192.168.0.69:5001/video_feed\";\n        }\n    });\n})(scope);\n</script>",
+        "storeOutMessages": false,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 1020,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b7aacb938d9f9307",
+        "type": "trigger",
+        "z": "97095cca6f5ef9e5",
+        "name": "reset msg",
+        "op1": "",
+        "op2": "empty",
+        "op1type": "pay",
+        "op2type": "str",
+        "duration": "250",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "ms",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 860,
+        "y": 120,
+        "wires": [
+            [
+                "f1a23952bca72074"
+            ]
+        ]
+    },
+    {
+        "id": "d065e7e98dc6840d",
+        "type": "function",
+        "z": "97095cca6f5ef9e5",
+        "name": "Pass-thru",
+        "func": "const enable_context = \"enable_graph\"\n\n// Store state\ncontext.is_enabled = context.is_enabled || false;\ncontext.passthru_data = context.passthru_data || {};\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.context) {\n\n  // Decode inputs\n  if (msg.payload.context === enable_context) {\n    context.is_enabled = msg.payload.data;\n  } else {\n    context.passthru_data = msg.payload.data;\n  }\n\n  if(context.is_enabled) {\n    msg.payload = context.passthru_data;\n  } else {\n    msg.payload = null;\n  }\n\n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"ERR DEC\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 780,
+        "y": 300,
+        "wires": [
+            [
+                "3bb361bf4aadc121"
+            ]
+        ]
+    },
+    {
+        "id": "954b99f22c5618f0",
+        "type": "link in",
+        "z": "97095cca6f5ef9e5",
+        "name": "link in 1",
+        "links": [
+            "f2dc6c1da6e5a2f2"
+        ],
+        "x": 495,
+        "y": 360,
+        "wires": [
+            [
+                "c2f93c2c7be8e33c"
+            ]
+        ]
+    },
+    {
+        "id": "3bb361bf4aadc121",
+        "type": "switch",
+        "z": "97095cca6f5ef9e5",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 950,
+        "y": 300,
+        "wires": [
+            [
+                "bf155ba88336211d"
+            ]
+        ]
+    },
+    {
+        "id": "c2f93c2c7be8e33c",
+        "type": "function",
+        "z": "97095cca6f5ef9e5",
+        "name": "Pass-thru",
+        "func": "const enable_context = \"enable_graph\"\n\n// Store state\ncontext.is_enabled = context.is_enabled || false;\ncontext.passthru_data = context.passthru_data || {};\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.context) {\n\n  // Decode inputs\n  if (msg.payload.context === enable_context) {\n    context.is_enabled = msg.payload.data;\n  } else {\n    context.passthru_data = msg.payload.data;\n  }\n\n  if(context.is_enabled) {\n    msg.payload = context.passthru_data;\n  } else {\n    msg.payload = null;\n  }\n\n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"ERR DEC\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 780,
+        "y": 360,
+        "wires": [
+            [
+                "bc61b424a530bc07"
+            ]
+        ]
+    },
+    {
+        "id": "bc61b424a530bc07",
+        "type": "switch",
+        "z": "97095cca6f5ef9e5",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 950,
+        "y": 360,
+        "wires": [
+            [
+                "a8e35e7782310a9c"
+            ]
+        ]
+    },
+    {
+        "id": "a8e35e7782310a9c",
+        "type": "ui_chart",
+        "z": "97095cca6f5ef9e5",
+        "name": "",
+        "group": "5a4020c2.81e",
+        "order": 0,
+        "width": "14",
+        "height": "5",
+        "label": "Velocity over time",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "NO DATA",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1290,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "83641986cb34363d",
+        "type": "mqtt in",
+        "z": "97095cca6f5ef9e5",
+        "name": "",
+        "topic": "Flightdata",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "39a992f2d865055f",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 100,
+        "y": 1940,
+        "wires": [
+            [
+                "2c2b72902dfee7e2"
+            ]
+        ]
+    },
+    {
+        "id": "b5faea71e6e69eb2",
+        "type": "link in",
+        "z": "97095cca6f5ef9e5",
+        "name": "link in 2",
+        "links": [
+            "f2dc6c1da6e5a2f2"
+        ],
+        "x": 495,
+        "y": 300,
+        "wires": [
+            [
+                "d065e7e98dc6840d"
+            ]
+        ]
+    },
+    {
+        "id": "54ed8139e3f0d2cb",
+        "type": "link in",
+        "z": "97095cca6f5ef9e5",
+        "name": "link in 3",
+        "links": [
+            "a0cc86e0b50faa78"
+        ],
+        "x": 1135,
+        "y": 340,
+        "wires": [
+            [
+                "bf155ba88336211d",
+                "a8e35e7782310a9c"
+            ]
+        ]
+    },
+    {
+        "id": "3308feb638f78b60",
+        "type": "http request",
+        "z": "97095cca6f5ef9e5",
+        "name": "Poll Video System",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://192.168.0.69:5001/ping",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 270,
+        "y": 1680,
+        "wires": [
+            [
+                "de1e2b827c3ab37d"
+            ]
+        ]
+    },
+    {
+        "id": "3767c02bdb291f9c",
         "type": "inject",
-        "z": "a3832ee5d563a633",
-        "name": "CLEAR GRAPHS",
+        "z": "97095cca6f5ef9e5",
+        "name": "",
         "props": [
             {
                 "p": "payload"
             }
         ],
-        "repeat": "",
+        "repeat": "3",
         "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
+        "once": true,
+        "onceDelay": "1",
         "topic": "",
-        "payload": "[]",
-        "payloadType": "json",
-        "x": 220,
-        "y": 360,
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 90,
+        "y": 1680,
         "wires": [
             [
-                "a0cc86e0b50faa78",
-                "80cb8b3145aa36bb"
+                "3308feb638f78b60"
             ]
         ]
     },
     {
-        "id": "a0cc86e0b50faa78",
-        "type": "link out",
-        "z": "a3832ee5d563a633",
-        "name": "Clear Graph",
-        "mode": "link",
-        "links": [
-            "54ed8139e3f0d2cb"
+        "id": "a92fcc57b1c6cccb",
+        "type": "catch",
+        "z": "97095cca6f5ef9e5",
+        "name": "",
+        "scope": [
+            "3308feb638f78b60"
         ],
-        "x": 385,
-        "y": 360,
+        "uncaught": false,
+        "x": 310,
+        "y": 1740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a30d14f66c8a8220",
+        "type": "ui_toast",
+        "z": "97095cca6f5ef9e5",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "Live Video enabled!",
+        "name": "",
+        "x": 1320,
+        "y": 1680,
         "wires": []
     },
     {
-        "id": "80cb8b3145aa36bb",
+        "id": "c56ddc206e38ba9b",
+        "type": "switch",
+        "z": "97095cca6f5ef9e5",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "OK",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 810,
+        "y": 1680,
+        "wires": [
+            [
+                "39e8b6650c1e9438",
+                "559e4ce5c3854da3"
+            ]
+        ]
+    },
+    {
+        "id": "de1e2b827c3ab37d",
+        "type": "function",
+        "z": "97095cca6f5ef9e5",
+        "name": "Notification push",
+        "func": "// Store state\ncontext.state = context.state || \"NO STATE DATA\";\n\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload) {\n\n  // Decode inputs\n  if(context.state !== msg.payload) {\n    context.state = msg.payload;\n    \n    msg.payload = context.state;\n    return msg;\n  }\n  msg.payload = \"\";\n  return msg;\n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"ERR\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 1680,
+        "wires": [
+            [
+                "c56ddc206e38ba9b",
+                "0377e5883a48a626"
+            ]
+        ]
+    },
+    {
+        "id": "39e8b6650c1e9438",
         "type": "change",
-        "z": "a3832ee5d563a633",
+        "z": "97095cca6f5ef9e5",
         "name": "",
         "rules": [
             {
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "Graph data has been cleared",
+                "to": "Navigate to Home > Live Video to view!",
                 "tot": "str"
             }
         ],
@@ -178,20 +1101,73 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 460,
-        "y": 420,
+        "x": 1020,
+        "y": 1680,
         "wires": [
             [
-                "49db7c9c2cba3ffb"
+                "a30d14f66c8a8220"
             ]
         ]
     },
     {
-        "id": "49db7c9c2cba3ffb",
+        "id": "8efed7518753b1a0",
+        "type": "change",
+        "z": "97095cca6f5ef9e5",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "The Live Video system has gone offline.",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1020,
+        "y": 1800,
+        "wires": [
+            [
+                "4fbdf4d9d268350b"
+            ]
+        ]
+    },
+    {
+        "id": "e04c6ed54a387c27",
+        "type": "switch",
+        "z": "97095cca6f5ef9e5",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "OK",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 810,
+        "y": 1760,
+        "wires": [
+            [
+                "8efed7518753b1a0",
+                "239553698d892944"
+            ]
+        ]
+    },
+    {
+        "id": "4fbdf4d9d268350b",
         "type": "ui_toast",
-        "z": "a3832ee5d563a633",
+        "z": "97095cca6f5ef9e5",
         "position": "top right",
-        "displayTime": "5",
+        "displayTime": "3",
         "highlight": "",
         "sendall": true,
         "outputs": 0,
@@ -199,22 +1175,50 @@
         "cancel": "",
         "raw": false,
         "className": "",
-        "topic": "",
+        "topic": "Live Video disabled",
         "name": "",
-        "x": 640,
-        "y": 420,
+        "x": 1320,
+        "y": 1800,
         "wires": []
     },
     {
-        "id": "9e1f1c17c61ed4b2",
+        "id": "239553698d892944",
+        "type": "change",
+        "z": "97095cca6f5ef9e5",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "DISABLED",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1020,
+        "y": 1760,
+        "wires": [
+            [
+                "3c22ab4c42816d65",
+                "1542d0ab07f7d2c8"
+            ]
+        ]
+    },
+    {
+        "id": "3c22ab4c42816d65",
         "type": "ui_text",
-        "z": "a3832ee5d563a633",
-        "group": "5a4020c2.81e",
+        "z": "97095cca6f5ef9e5",
+        "group": "ca2272c3.e8396",
         "order": 2,
-        "width": "14",
+        "width": "10",
         "height": "1",
         "name": "",
-        "label": "Graph System Status:",
+        "label": "Video System Status:",
         "format": "{{msg.payload}}",
         "layout": "row-center",
         "className": "",
@@ -222,21 +1226,21 @@
         "font": "",
         "fontSize": "8",
         "color": "#ffffff",
-        "x": 800,
-        "y": 220,
+        "x": 1600,
+        "y": 1720,
         "wires": []
     },
     {
-        "id": "eac46414ffdab55a",
+        "id": "559e4ce5c3854da3",
         "type": "change",
-        "z": "a3832ee5d563a633",
+        "z": "97095cca6f5ef9e5",
         "name": "",
         "rules": [
             {
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "Enabled",
+                "to": "ENABLED",
                 "tot": "str"
             }
         ],
@@ -245,369 +1249,999 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 560,
-        "y": 220,
+        "x": 1020,
+        "y": 1720,
         "wires": [
             [
-                "9e1f1c17c61ed4b2"
+                "3c22ab4c42816d65",
+                "1542d0ab07f7d2c8"
             ]
         ]
     },
     {
-        "id": "b459043870f3a96e",
-        "type": "change",
-        "z": "a3832ee5d563a633",
+        "id": "0377e5883a48a626",
+        "type": "switch",
+        "z": "97095cca6f5ef9e5",
         "name": "",
+        "property": "payload",
+        "propertyType": "msg",
         "rules": [
             {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "Disabled",
-                "tot": "str"
+                "t": "neq",
+                "v": "",
+                "vt": "str"
             }
         ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 560,
-        "y": 280,
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 690,
+        "y": 1760,
         "wires": [
             [
-                "9e1f1c17c61ed4b2"
+                "e04c6ed54a387c27"
             ]
         ]
     },
     {
-        "id": "47c7f79ea6cbc48c",
-        "type": "inject",
-        "z": "a3832ee5d563a633",
-        "name": "CLEAR LOGS",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "[]",
-        "payloadType": "json",
-        "x": 190,
-        "y": 680,
-        "wires": [
-            [
-                "53b714a7566a2d05",
-                "c128e6a3c7e97067",
-                "f92c5dc3cd717bd6"
-            ]
-        ]
-    },
-    {
-        "id": "0b680ca49c7c4429",
+        "id": "c19892aaef95c0bf",
         "type": "file",
-        "z": "a3832ee5d563a633",
+        "z": "97095cca6f5ef9e5",
         "name": "",
         "filename": "C:\\Users\\mpkar\\Documents\\ISS\\GSS_LOGS\\json_log.txt",
         "filenameType": "str",
         "appendNewline": true,
         "createDir": true,
-        "overwriteFile": "true",
+        "overwriteFile": "false",
         "encoding": "none",
-        "x": 750,
-        "y": 780,
+        "x": 1050,
+        "y": 1940,
         "wires": [
             []
         ]
     },
     {
-        "id": "70c78056887bc604",
-        "type": "file",
-        "z": "a3832ee5d563a633",
+        "id": "b4a0db9f0cfe4a6f",
+        "type": "json",
+        "z": "97095cca6f5ef9e5",
         "name": "",
-        "filename": "C:\\Users\\mpkar\\Documents\\ISS\\GSS_LOGS\\csv_log.csv",
-        "filenameType": "str",
-        "appendNewline": true,
-        "createDir": true,
-        "overwriteFile": "true",
-        "encoding": "none",
-        "x": 1010,
-        "y": 680,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "53b714a7566a2d05",
-        "type": "change",
-        "z": "a3832ee5d563a633",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "{\"type\":\"data\",\"value\":{\"IMU_mx\":0.8855195169413189,\"IMU_my\":-0.46460217941375737,\"IMU_mz\":-0.41141429748435443,\"IMU_gx\":0.8855195169413189,\"IMU_gy\":-0.46460217941375737,\"IMU_gz\":-0.41141429748435443,\"KX_IMU_ax\":0.8855195169413189,\"KX_IMU_ay\":-0.46460217941375737,\"KX_IMU_az\":-0.41141429748435443,\"gps_lat\":41.77515851951694,\"gps_long\":-86.57289960217942,\"gps_alt\":17400,\"STE_ALT\":0.8855195169413189,\"STE_VEL\":-0.46460217941375737,\"STE_ACC\":-0.41141429748435443,\"STE_APO\":-0.8228285949687089,\"BNO_YAW\":0.8855195169413189,\"BNO_PITCH\":-0.46460217941375737,\"BNO_ROLL\":0.42091733752756155,\"RSSI\":0.8855195169413189,\"sign\":\"qxqxlol\",\"FSM_state\":5.800000000000001,\"Voltage\":0.8855195169413189,\"TEMP\":0.8855195169413189,\"frequency\":0.8855195169413189,\"flap_extension\":-0.5246662219468002,\"pressure\":918,\"Continuity1\":0.8855195169413189,\"Continuity2\":-0.46460217941375737,\"Continuity3\":0.8855195169413189,\"Continuity4\":-0.46460217941375737,\"TelemLatency\":0.8855195169413189,\"Pyro1\":0.8855195169413189,\"Pyro2\":-0.46460217941375737,\"Pyro3\":0.8855195169413189,\"Pyro4\":-0.46460217941375737,\"Pyro1Firing\":0.8855195169413189,\"Pyro2Firing\":-0.46460217941375737,\"Pyro3Firing\":0.8855195169413189,\"Pyro4Firing\":-0.46460217941375737,\"is_booster\":false}}",
-                "tot": "json"
-            }
-        ],
+        "property": "payload",
         "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 400,
-        "y": 680,
+        "pretty": false,
+        "x": 710,
+        "y": 1940,
         "wires": [
             [
-                "47829d6f57f9f3df"
+                "c19892aaef95c0bf"
             ]
         ]
     },
     {
-        "id": "c128e6a3c7e97067",
-        "type": "change",
-        "z": "a3832ee5d563a633",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "Flight log has been cleared",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 400,
-        "y": 840,
-        "wires": [
-            [
-                "9d567eceb294340d"
-            ]
-        ]
-    },
-    {
-        "id": "9d567eceb294340d",
-        "type": "ui_toast",
-        "z": "a3832ee5d563a633",
-        "position": "top right",
-        "displayTime": "5",
-        "highlight": "",
-        "sendall": true,
-        "outputs": 0,
-        "ok": "OK",
-        "cancel": "",
-        "raw": false,
-        "className": "",
-        "topic": "",
-        "name": "",
-        "x": 620,
-        "y": 840,
-        "wires": []
-    },
-    {
-        "id": "3fbbffaada7289ed",
-        "type": "inject",
-        "z": "a3832ee5d563a633",
-        "name": "ENABLE LOGGING",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "{\"data\":true,\"context\":\"enable_log\"}",
-        "payloadType": "json",
-        "x": 190,
-        "y": 520,
-        "wires": [
-            [
-                "589911925ca3e832",
-                "6208358474682f9b"
-            ]
-        ]
-    },
-    {
-        "id": "589911925ca3e832",
-        "type": "link out",
-        "z": "a3832ee5d563a633",
-        "name": "Enable log",
-        "mode": "link",
-        "links": [
-            "941eb68e3df9dd76"
-        ],
-        "x": 385,
-        "y": 580,
-        "wires": []
-    },
-    {
-        "id": "84f5076cdb70125c",
-        "type": "inject",
-        "z": "a3832ee5d563a633",
-        "name": "DISABLE LOGGING",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "{\"data\":false,\"context\":\"enable_log\"}",
-        "payloadType": "json",
-        "x": 190,
-        "y": 580,
-        "wires": [
-            [
-                "589911925ca3e832",
-                "c073ad141694a9dc"
-            ]
-        ]
-    },
-    {
-        "id": "6208358474682f9b",
-        "type": "change",
-        "z": "a3832ee5d563a633",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "Flight Logging has been enabled",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 440,
-        "y": 520,
-        "wires": [
-            [
-                "9a0f0de8f77ae9b4"
-            ]
-        ]
-    },
-    {
-        "id": "9a0f0de8f77ae9b4",
-        "type": "ui_toast",
-        "z": "a3832ee5d563a633",
-        "position": "top right",
-        "displayTime": "5",
-        "highlight": "",
-        "sendall": true,
-        "outputs": 0,
-        "ok": "OK",
-        "cancel": "",
-        "raw": false,
-        "className": "",
-        "topic": "",
-        "name": "",
+        "id": "a2957f934d119a96",
+        "type": "comment",
+        "z": "97095cca6f5ef9e5",
+        "name": "Live video",
+        "info": "",
         "x": 680,
-        "y": 520,
+        "y": 80,
         "wires": []
     },
     {
-        "id": "c073ad141694a9dc",
-        "type": "change",
-        "z": "a3832ee5d563a633",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "Flight Logging has been disabled",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 440,
-        "y": 620,
-        "wires": [
-            [
-                "9a0f0de8f77ae9b4"
-            ]
-        ]
+        "id": "c285e2e14d1aff43",
+        "type": "comment",
+        "z": "97095cca6f5ef9e5",
+        "name": "Video system status polling",
+        "info": "",
+        "x": 290,
+        "y": 1640,
+        "wires": []
     },
     {
-        "id": "47829d6f57f9f3df",
+        "id": "bd90071ba0540bb2",
+        "type": "comment",
+        "z": "97095cca6f5ef9e5",
+        "name": "Datalogging",
+        "info": "",
+        "x": 290,
+        "y": 1900,
+        "wires": []
+    },
+    {
+        "id": "3d51d44b22acf068",
         "type": "function",
-        "z": "a3832ee5d563a633",
-        "name": "Decode FD to CSV:key",
-        "func": "\n// Check if msg.payload exists and has the required properties\nif (msg.payload) {\n    let csv_out = \"\";\n\n    Object.entries(msg.payload.value).forEach(function([key, val]) {\n        csv_out += key + \",\";\n    });\n\n    msg.payload = csv_out.substring(0, csv_out.length - 1);;\n    \n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"Error: Invalid payload structure\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "z": "97095cca6f5ef9e5",
+        "name": "Decode FD to CSV:value",
+        "func": "\n// Check if msg.payload exists and has the required properties\nif (msg.payload) {\n    let csv_out = \"\";\n\n    Object.entries(msg.payload.value).forEach(function([key, val]) {\n        csv_out += val + \",\";\n    });\n\n    msg.payload = csv_out.substring(0, csv_out.length - 1);;\n    \n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"Error: Invalid payload structure\";\n}\n\n// Return the modified msg object\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 650,
-        "y": 680,
+        "x": 690,
+        "y": 1980,
         "wires": [
             [
-                "70c78056887bc604"
+                "6c552975984e5b1d"
             ]
         ]
     },
     {
-        "id": "3e2b63f2e59d87c4",
-        "type": "comment",
-        "z": "a3832ee5d563a633",
-        "name": "IMPORTANT!!",
-        "info": "Set above node to sample packet\n\nDebug >> copy >> paste into JSON editor",
-        "x": 390,
-        "y": 720,
+        "id": "6c552975984e5b1d",
+        "type": "file",
+        "z": "97095cca6f5ef9e5",
+        "name": "",
+        "filename": "C:\\Users\\mpkar\\Documents\\ISS\\GSS_LOGS\\csv_log.csv",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 1050,
+        "y": 1980,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2c2b72902dfee7e2",
+        "type": "function",
+        "z": "97095cca6f5ef9e5",
+        "name": "Pass-thru (Raw)",
+        "func": "const enable_context = \"enable_log\"\n\n// Store state\ncontext.is_enabled = context.is_enabled || false;\ncontext.passthru_data = context.passthru_data || {};\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload) {\n\n  // Decode inputs\n  if (msg.payload.context) {\n    context.is_enabled = msg.payload.data;\n  } else {\n    context.passthru_data = msg.payload;\n  }\n\n  if(context.is_enabled) {\n    msg.payload = context.passthru_data;\n  } else {\n    msg.payload = null;\n  }\n\n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"ERR DEC\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 1940,
+        "wires": [
+            [
+                "c1c86f32cf49cac2"
+            ]
+        ]
+    },
+    {
+        "id": "941eb68e3df9dd76",
+        "type": "link in",
+        "z": "97095cca6f5ef9e5",
+        "name": "link in 4",
+        "links": [
+            "589911925ca3e832"
+        ],
+        "x": 145,
+        "y": 1980,
+        "wires": [
+            [
+                "2c2b72902dfee7e2"
+            ]
+        ]
+    },
+    {
+        "id": "c1c86f32cf49cac2",
+        "type": "switch",
+        "z": "97095cca6f5ef9e5",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 450,
+        "y": 1940,
+        "wires": [
+            [
+                "b4a0db9f0cfe4a6f",
+                "3d51d44b22acf068"
+            ]
+        ]
+    },
+    {
+        "id": "1542d0ab07f7d2c8",
+        "type": "ui_text",
+        "z": "97095cca6f5ef9e5",
+        "group": "35848f461ab4285c",
+        "order": 2,
+        "width": "6",
+        "height": "1",
+        "name": "",
+        "label": "Video System Status:",
+        "format": "{{msg.payload}}",
+        "layout": "row-center",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "8",
+        "color": "#ffffff",
+        "x": 1600,
+        "y": 1760,
         "wires": []
     },
     {
-        "id": "f92c5dc3cd717bd6",
-        "type": "change",
-        "z": "a3832ee5d563a633",
+        "id": "f2ac0df48387736d",
+        "type": "mqtt in",
+        "z": "97095cca6f5ef9e5",
         "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 400,
-        "y": 780,
+        "topic": "Flightdata",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "22f394e5.96b87c",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 80,
+        "y": 1260,
         "wires": [
             [
-                "0b680ca49c7c4429"
+                "68d44c276ea53418",
+                "71058490b9d4efc7",
+                "09ef3d9bd9a1ee77"
             ]
         ]
+    },
+    {
+        "id": "68d44c276ea53418",
+        "type": "function",
+        "z": "97095cca6f5ef9e5",
+        "name": "Accel X",
+        "func": "// Assuming msg.payload is the provided object\nconst param_decode = [\"KX_IMU_ax\"];\nconst output_context = \"Accelerometer X\"\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.type === \"data\" && msg.payload.value) {\n    let new_payload = {};\n    param_decode.forEach((param) => {\n        if(typeof msg.payload.value[param] === \"undefined\") {\n            msg.payload = \"Error: Missing params\";\n            return msg;\n        } else {\n            new_payload[param] = msg.payload.value[param];\n        }\n    });\n    \n    if(param_decode.length == 1) {\n        // Simple case, if only 1 param\n        new_payload = new_payload[param_decode[0]];\n    } \n\n    // Context to allow for multiple inputs down the line\n    msg.payload = {context: output_context, data: new_payload};\n    \n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"Error: Invalid payload structure\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 240,
+        "y": 1220,
+        "wires": [
+            [
+                "266b76a23c278bdf"
+            ]
+        ]
+    },
+    {
+        "id": "71058490b9d4efc7",
+        "type": "function",
+        "z": "97095cca6f5ef9e5",
+        "name": "Accel Y",
+        "func": "// Assuming msg.payload is the provided object\nconst param_decode = [\"KX_IMU_ay\"];\nconst output_context = \"Accelerometer Y\"\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.type === \"data\" && msg.payload.value) {\n    let new_payload = {};\n    param_decode.forEach((param) => {\n        if(typeof msg.payload.value[param] === \"undefined\") {\n            msg.payload = \"Error: Missing params\";\n            return msg;\n        } else {\n            new_payload[param] = msg.payload.value[param];\n        }\n    });\n    \n    if(param_decode.length == 1) {\n        // Simple case, if only 1 param\n        new_payload = new_payload[param_decode[0]];\n    } \n\n    // Context to allow for multiple inputs down the line\n    msg.payload = {context: output_context, data: new_payload};\n    \n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"Error: Invalid payload structure\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 240,
+        "y": 1260,
+        "wires": [
+            [
+                "dc1c458a4f6d82f9"
+            ]
+        ]
+    },
+    {
+        "id": "09ef3d9bd9a1ee77",
+        "type": "function",
+        "z": "97095cca6f5ef9e5",
+        "name": "Accel Z",
+        "func": "// Assuming msg.payload is the provided object\nconst param_decode = [\"KX_IMU_az\"];\nconst output_context = \"Accelerometer Z\"\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.type === \"data\" && msg.payload.value) {\n    let new_payload = {};\n    param_decode.forEach((param) => {\n        if(typeof msg.payload.value[param] === \"undefined\") {\n            msg.payload = \"Error: Missing params\";\n            return msg;\n        } else {\n            new_payload[param] = msg.payload.value[param];\n        }\n    });\n    \n    if(param_decode.length == 1) {\n        // Simple case, if only 1 param\n        new_payload = new_payload[param_decode[0]];\n    } \n\n    // Context to allow for multiple inputs down the line\n    msg.payload = {context: output_context, data: new_payload};\n    \n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"Error: Invalid payload structure\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 240,
+        "y": 1300,
+        "wires": [
+            [
+                "8ce56e910f5ad820"
+            ]
+        ]
+    },
+    {
+        "id": "266b76a23c278bdf",
+        "type": "function",
+        "z": "97095cca6f5ef9e5",
+        "name": "Decode Accelerometer",
+        "func": "// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.context && msg.payload.data) {\n    msg.topic = msg.payload.context;\n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"Error: Invalid payload structure\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 1220,
+        "wires": [
+            [
+                "d5814ae6d6fe2647",
+                "ebd44ad72e419441"
+            ]
+        ]
+    },
+    {
+        "id": "3ee791be00bd5181",
+        "type": "ui_chart",
+        "z": "97095cca6f5ef9e5",
+        "name": "",
+        "group": "5a4020c2.81e",
+        "order": 0,
+        "width": "14",
+        "height": "5",
+        "label": "Acceleration over time",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "NO DATA",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#ff0000",
+            "#00ff00",
+            "#0080ff",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1060,
+        "y": 1340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dc1c458a4f6d82f9",
+        "type": "function",
+        "z": "97095cca6f5ef9e5",
+        "name": "Decode Accelerometer",
+        "func": "// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.context && msg.payload.data) {\n    msg.topic = msg.payload.context;\n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"Error: Invalid payload structure\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 1260,
+        "wires": [
+            [
+                "22133082f8f03620"
+            ]
+        ]
+    },
+    {
+        "id": "8ce56e910f5ad820",
+        "type": "function",
+        "z": "97095cca6f5ef9e5",
+        "name": "Decode Accelerometer",
+        "func": "// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.context && msg.payload.data) {\n    msg.topic = msg.payload.context;\n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"Error: Invalid payload structure\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 1300,
+        "wires": [
+            [
+                "02d38aeda35cc7f5"
+            ]
+        ]
+    },
+    {
+        "id": "98e2f762eb4a03a1",
+        "type": "link in",
+        "z": "97095cca6f5ef9e5",
+        "name": "link in 5",
+        "links": [
+            "a0cc86e0b50faa78"
+        ],
+        "x": 865,
+        "y": 1180,
+        "wires": [
+            [
+                "3ee791be00bd5181"
+            ]
+        ]
+    },
+    {
+        "id": "d5814ae6d6fe2647",
+        "type": "function",
+        "z": "97095cca6f5ef9e5",
+        "name": "Pass-thru",
+        "func": "const enable_context = \"enable_graph\"\n\n// Store state\ncontext.is_enabled = context.is_enabled || false;\ncontext.passthru_data = context.passthru_data || {};\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.context) {\n\n  // Decode inputs\n  if (msg.payload.context === enable_context) {\n    context.is_enabled = msg.payload.data;\n  } else {\n    context.passthru_data = msg.payload.data;\n  }\n\n  if(context.is_enabled) {\n    msg.payload = context.passthru_data;\n  } else {\n    msg.payload = null;\n  }\n\n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"ERR DEC\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 1220,
+        "wires": [
+            [
+                "74a4086e04384ff4"
+            ]
+        ]
+    },
+    {
+        "id": "74a4086e04384ff4",
+        "type": "switch",
+        "z": "97095cca6f5ef9e5",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 830,
+        "y": 1220,
+        "wires": [
+            [
+                "3ee791be00bd5181"
+            ]
+        ]
+    },
+    {
+        "id": "f1a2638052a08d01",
+        "type": "link in",
+        "z": "97095cca6f5ef9e5",
+        "name": "link in 6",
+        "links": [
+            "f2dc6c1da6e5a2f2"
+        ],
+        "x": 525,
+        "y": 1180,
+        "wires": [
+            [
+                "d5814ae6d6fe2647",
+                "22133082f8f03620",
+                "02d38aeda35cc7f5"
+            ]
+        ]
+    },
+    {
+        "id": "22133082f8f03620",
+        "type": "function",
+        "z": "97095cca6f5ef9e5",
+        "name": "Pass-thru",
+        "func": "const enable_context = \"enable_graph\"\n\n// Store state\ncontext.is_enabled = context.is_enabled || false;\ncontext.passthru_data = context.passthru_data || {};\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.context) {\n\n  // Decode inputs\n  if (msg.payload.context === enable_context) {\n    context.is_enabled = msg.payload.data;\n  } else {\n    context.passthru_data = msg.payload.data;\n  }\n\n  if(context.is_enabled) {\n    msg.payload = context.passthru_data;\n  } else {\n    msg.payload = null;\n  }\n\n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"ERR DEC\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 1260,
+        "wires": [
+            [
+                "47bbe0403151fb4e"
+            ]
+        ]
+    },
+    {
+        "id": "02d38aeda35cc7f5",
+        "type": "function",
+        "z": "97095cca6f5ef9e5",
+        "name": "Pass-thru",
+        "func": "const enable_context = \"enable_graph\"\n\n// Store state\ncontext.is_enabled = context.is_enabled || false;\ncontext.passthru_data = context.passthru_data || {};\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.context) {\n\n  // Decode inputs\n  if (msg.payload.context === enable_context) {\n    context.is_enabled = msg.payload.data;\n  } else {\n    context.passthru_data = msg.payload.data;\n  }\n\n  if(context.is_enabled) {\n    msg.payload = context.passthru_data;\n  } else {\n    msg.payload = null;\n  }\n\n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"ERR DEC\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 1300,
+        "wires": [
+            [
+                "642db82e2cd6f28d"
+            ]
+        ]
+    },
+    {
+        "id": "47bbe0403151fb4e",
+        "type": "switch",
+        "z": "97095cca6f5ef9e5",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 830,
+        "y": 1260,
+        "wires": [
+            [
+                "3ee791be00bd5181"
+            ]
+        ]
+    },
+    {
+        "id": "642db82e2cd6f28d",
+        "type": "switch",
+        "z": "97095cca6f5ef9e5",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 830,
+        "y": 1300,
+        "wires": [
+            [
+                "3ee791be00bd5181"
+            ]
+        ]
+    },
+    {
+        "id": "09d89c06502c7b5c",
+        "type": "ui_gauge",
+        "z": "97095cca6f5ef9e5",
+        "name": "",
+        "group": "69c7e0bf55ba177e",
+        "order": 0,
+        "width": "3",
+        "height": "2",
+        "gtype": "gage",
+        "title": "Acceleration",
+        "label": "m/s^2",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "45000",
+        "colors": [
+            "#800000",
+            "#ff0000",
+            "#ff8080"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1050,
+        "y": 1420,
+        "wires": []
+    },
+    {
+        "id": "aca768b103560ced",
+        "type": "mqtt out",
+        "z": "97095cca6f5ef9e5",
+        "name": "",
+        "topic": "Flightdata",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "6b9d9bbc1fd214eb",
+        "x": 640,
+        "y": 2480,
+        "wires": []
+    },
+    {
+        "id": "ce81cdf3e083e965",
+        "type": "link out",
+        "z": "97095cca6f5ef9e5",
+        "name": "Atitude",
+        "mode": "link",
+        "links": [
+            "df0fb1955cbad469"
+        ],
+        "x": 1055,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "c61f709cf4afb9d8",
+        "type": "comment",
+        "z": "97095cca6f5ef9e5",
+        "name": "Calculate velocity",
+        "info": "",
+        "x": 300,
+        "y": 2140,
+        "wires": []
+    },
+    {
+        "id": "df0fb1955cbad469",
+        "type": "link in",
+        "z": "97095cca6f5ef9e5",
+        "name": "link in 7",
+        "links": [
+            "ce81cdf3e083e965"
+        ],
+        "x": 165,
+        "y": 2200,
+        "wires": [
+            [
+                "d578860885cade05"
+            ]
+        ]
+    },
+    {
+        "id": "d578860885cade05",
+        "type": "function",
+        "z": "97095cca6f5ef9e5",
+        "name": "Integrator",
+        "func": "// PREREQ: MUST BE NUMBER !\nconst cbuf_size = 3\n\nfunction calculateSlope(xValues, yValues) {\n    if (xValues.length !== yValues.length || xValues.length < 2) {\n        return 0\n    }\n\n    let sumX = 0;\n    let sumY = 0;\n    let sumXY = 0;\n    let sumXX = 0;\n\n    for (let i = 0; i < xValues.length; i++) {\n        sumX += xValues[i];\n        sumY += yValues[i];\n        sumXY += xValues[i] * yValues[i];\n        sumXX += xValues[i] * xValues[i];\n    }\n\n    const n = xValues.length;\n    const slope = (n * sumXY - sumX * sumY) / (n * sumXX - sumX * sumX);\n    return slope;\n}\n\ncontext.cbuf = context.cbuf || []\ncontext.cbuf_t = context.cbuf_t || []\n\nfunction isNumber(value) {\n  return typeof value === 'number';\n}\n\nif(!isNumber(msg.payload)) {\n    return msg;\n}\n\n// circular buffer\ncontext.cbuf.push(msg.payload);\ncontext.cbuf_t.push(Date.now())\nif(context.cbuf.length > cbuf_size) {\n  context.cbuf.shift();\n  context.cbuf_t.shift();\n}\n\nlet dt_buf = context.cbuf_t.map(t => ((Date.now() - t)/1000));\n\nlet m = calculateSlope(dt_buf, context.cbuf)\nif(isFinite(m)) {\n  msg.payload = -m;\n} else {\n  msg.payload = 0;\n}\n\n\n// msg.payload = context.cbuf.reduce((accumulator, currentValue) => {\n//   return accumulator + currentValue\n// },0)/cbuf_size;\n\n\n\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 280,
+        "y": 2200,
+        "wires": [
+            [
+                "fd350fa3fb129cfc"
+            ]
+        ]
+    },
+    {
+        "id": "37d430d77ebe47e6",
+        "type": "function",
+        "z": "97095cca6f5ef9e5",
+        "name": "FSM",
+        "func": "// Assuming msg.payload is the provided object\nconst param_decode = [\"FSM_state\"];\nconst output_context = \"fsm\"\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.type === \"data\" && msg.payload.value) {\n    let new_payload = {};\n    param_decode.forEach((param) => {\n        if(typeof msg.payload.value[param] === \"undefined\") {\n            msg.payload = \"Error: Missing params\";\n            return msg;\n        } else {\n            new_payload[param] = msg.payload.value[param];\n        }\n    });\n    \n    if(param_decode.length == 1) {\n        // Simple case, if only 1 param\n        new_payload = new_payload[param_decode[0]];\n    } \n\n    // Context to allow for multiple inputs down the line\n    msg.payload = {context: output_context, data: new_payload};\n    \n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"Error: Invalid payload structure\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 1080,
+        "wires": [
+            [
+                "d8e6993c6546c057"
+            ]
+        ]
+    },
+    {
+        "id": "d8e6993c6546c057",
+        "type": "function",
+        "z": "97095cca6f5ef9e5",
+        "name": "FSM Decode",
+        "func": "// Store state\ncontext.fsmstate = context.fsmstate || null;\n\nfunction isNumber(value) {\n  return typeof value === 'number';\n}\n\nconst fsm_states = [\n    \"IDLE\",     // STATE_IDLE\n    \"FIRST STAGE BOOST\",  // STATE_FIRST_BOOST\n    \"FIRST STAGE BURNOUT\", // STATE_BURNOUT\n    \"COASTING\", // STATE_COAST\n    \"ACHIEVED APOGEE\", // STATE_APOGEE\n    \"ATTEMPTING DROGUE DEPLOY\", // STATE_DROGUE_DEPLOY\n    \"DROGUE DEPLOY CONFIRMED\", // STATE_DROGUE\n    \"ATTEMPTING MAIN DEPLOY\", // STATE_MAIN_DEPLOY\n    \"MAIN DEPLOY CONFIRMED\", // STATE_MAIN\n    \"LANDED\", // STATE_LANDED\n    \"ATTEMPTING SUSTAINER IGNITION\", // STATE_SUSTAINER_IGNITION\n    \"SECOND STAGE BOOST\", // STATE_SECOND_BOOST\n];\nconst flavor_text = \"State update: \" \n\n// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.context && msg.payload.data) {\n\n  // Decode inputs\n  if (msg.payload.context === \"fsm\") {\n    context.fsmstate = msg.payload.data\n  }\n  \n  let state = Math.floor(context.fsmstate);\n  let display_state = fsm_states[state] ? fsm_states[state] : \"NO FSM DATA\"\n  \n  msg.payload.data = display_state\n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"ERR\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 1080,
+        "wires": [
+            [
+                "98ad34a809215979"
+            ]
+        ]
+    },
+    {
+        "id": "98ad34a809215979",
+        "type": "function",
+        "z": "97095cca6f5ef9e5",
+        "name": "Notification push",
+        "func": "// Store state\ncontext.state = context.state || \"NO STATE DATA\";\n\nfunction isNumber(value) {\n  return typeof value === 'number';\n}\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.context && msg.payload.data) {\n\n  // Decode inputs\n  if(context.state !== msg.payload.data) {\n    context.state = msg.payload.data;\n    msg.payload = context.state;\n    return msg;\n  }\n  msg.payload = \"\";\n  return msg;\n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"ERR\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 1080,
+        "wires": [
+            [
+                "a61f2864cca1160e"
+            ]
+        ]
+    },
+    {
+        "id": "958d30c1fc32acc7",
+        "type": "ui_toast",
+        "z": "97095cca6f5ef9e5",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "FSM State Update",
+        "name": "",
+        "x": 1120,
+        "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "a61f2864cca1160e",
+        "type": "switch",
+        "z": "97095cca6f5ef9e5",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 930,
+        "y": 1080,
+        "wires": [
+            [
+                "958d30c1fc32acc7"
+            ]
+        ]
+    },
+    {
+        "id": "ebd44ad72e419441",
+        "type": "function",
+        "z": "97095cca6f5ef9e5",
+        "name": "Read G Accel",
+        "func": "\nmsg.payload = {context: \"accel\", data: msg.payload.data * 9.81}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 1420,
+        "wires": [
+            [
+                "24715d51450d79cf"
+            ]
+        ]
+    },
+    {
+        "id": "0172de105ff88bfc",
+        "type": "debug",
+        "z": "97095cca6f5ef9e5",
+        "name": "debug 2",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1080,
+        "y": 1520,
+        "wires": []
+    },
+    {
+        "id": "24715d51450d79cf",
+        "type": "function",
+        "z": "97095cca6f5ef9e5",
+        "name": "Clean Float",
+        "func": "// Returns a properly formatted float (:.1f), 1 decimal precision\n\nfunction isNumber(value) {\n  return typeof value === 'number';\n}\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.data && isNumber(msg.payload.data)) {\n    // Round to nearest tenth\n    msg.payload = Math.round(msg.payload.data * 10) / 10;\n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"ERR\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 890,
+        "y": 1420,
+        "wires": [
+            [
+                "09d89c06502c7b5c",
+                "0172de105ff88bfc"
+            ]
+        ]
+    },
+    {
+        "id": "87472f6ab8a57f67",
+        "type": "inject",
+        "z": "97095cca6f5ef9e5",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"type\":\"data\",\"value\":{\"gps_lat\":0,\"gps_long\":0,\"gps_alt\":100,\"KX_IMU_ax\":0.31641,\"KX_IMU_ay\":0.09766,\"KX_IMU_az\":1.02734,\"LOW_G_LSM_ax\":0,\"LOW_G_LSM_ay\":0,\"LOW_G_LSM_az\":0,\"IMU_gx\":1.375,\"IMU_gy\":-0.125,\"IMU_gz\":2.125,\"IMU_mx\":-0.68872,\"IMU_my\":0.75269,\"IMU_mz\":-2.66418,\"FSM_state\":0,\"sign\":\"KD9ZMJ\",\"RSSI\":-128,\"Voltage\":0.375,\"Continuity1\":0,\"Continuity2\":1.875,\"Continuity3\":0,\"Continuity4\":0,\"Pyro1\":0,\"Pyro2\":0,\"Pyro3\":0,\"Pyro4\":0,\"Pyro1Firing\":0,\"Pyro2Firing\":0,\"Pyro3Firing\":0,\"Pyro4Firing\":0,\"TelemLatency\":260,\"LogLatency\":0,\"is_booster\":0,\"sense_pyro\":0,\"BNO_YAW\":0,\"BNO_PITCH\":0,\"BNO_ROLL\":0,\"TEMP\":28.48828,\"pressure\":10.375}}",
+        "payloadType": "json",
+        "x": 470,
+        "y": 2520,
+        "wires": [
+            [
+                "aca768b103560ced"
+            ]
+        ]
+    },
+    {
+        "id": "fd350fa3fb129cfc",
+        "type": "link out",
+        "z": "97095cca6f5ef9e5",
+        "name": "Integrated Velocity",
+        "mode": "link",
+        "links": [
+            "59aa6d59383fcb08"
+        ],
+        "x": 395,
+        "y": 2200,
+        "wires": []
+    },
+    {
+        "id": "2b6ea429a1e2acfe",
+        "type": "inject",
+        "z": "97095cca6f5ef9e5",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"type\":\"data\",\"value\":{\"gps_lat\":0,\"gps_long\":0,\"gps_alt\":100,\"KX_IMU_ax\":0.31641,\"KX_IMU_ay\":0.09766,\"KX_IMU_az\":1.02734,\"LOW_G_LSM_ax\":0,\"LOW_G_LSM_ay\":0,\"LOW_G_LSM_az\":0,\"IMU_gx\":1.375,\"IMU_gy\":-0.125,\"IMU_gz\":2.125,\"IMU_mx\":-0.68872,\"IMU_my\":0.75269,\"IMU_mz\":-2.66418,\"FSM_state\":0,\"sign\":\"KD9ZMJ\",\"RSSI\":-128,\"Voltage\":0.375,\"Continuity1\":0,\"Continuity2\":1.875,\"Continuity3\":0,\"Continuity4\":0,\"Pyro1\":0,\"Pyro2\":0,\"Pyro3\":0,\"Pyro4\":0,\"Pyro1Firing\":0,\"Pyro2Firing\":0,\"Pyro3Firing\":0,\"Pyro4Firing\":0,\"TelemLatency\":260,\"LogLatency\":0,\"is_booster\":0,\"sense_pyro\":0,\"BNO_YAW\":0,\"BNO_PITCH\":0,\"BNO_ROLL\":0,\"TEMP\":28.48828,\"pressure\":1000.375}}",
+        "payloadType": "json",
+        "x": 470,
+        "y": 2480,
+        "wires": [
+            [
+                "aca768b103560ced"
+            ]
+        ]
+    },
+    {
+        "id": "59aa6d59383fcb08",
+        "type": "link in",
+        "z": "97095cca6f5ef9e5",
+        "name": "link in 8",
+        "links": [
+            "fd350fa3fb129cfc"
+        ],
+        "x": 305,
+        "y": 420,
+        "wires": [
+            [
+                "b3522e6d7a7113cc"
+            ]
+        ]
+    },
+    {
+        "id": "b3522e6d7a7113cc",
+        "type": "function",
+        "z": "97095cca6f5ef9e5",
+        "name": "Encode_v",
+        "func": "msg.payload = {context:\"vel\",data:msg.payload}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 420,
+        "wires": [
+            [
+                "c2f93c2c7be8e33c",
+                "ca9d6370c02863b9"
+            ]
+        ]
+    },
+    {
+        "id": "22f394e5.96b87c",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "compatmode": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "69c7e0bf55ba177e",
+        "type": "ui_group",
+        "name": "Live Telemetry",
+        "tab": "152d9aec61c24f73",
+        "order": 5,
+        "disp": true,
+        "width": "10",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "ca2272c3.e8396",
+        "type": "ui_group",
+        "name": "Video",
+        "tab": "352010d7.7bdd4",
+        "order": 1,
+        "disp": true,
+        "width": "10",
+        "collapse": false,
+        "className": ""
     },
     {
         "id": "5a4020c2.81e",
@@ -621,10 +2255,103 @@
         "className": ""
     },
     {
+        "id": "39a992f2d865055f",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.0.100",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "35848f461ab4285c",
+        "type": "ui_group",
+        "name": "Status",
+        "tab": "385027e716d09b2e",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "6b9d9bbc1fd214eb",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "152d9aec61c24f73",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "352010d7.7bdd4",
+        "type": "ui_tab",
+        "name": "Live Video",
+        "icon": "fa-video-camera",
+        "disabled": false,
+        "hidden": false
+    },
+    {
         "id": "4b1f5d5c.eddd44",
         "type": "ui_tab",
         "name": "Graphs",
         "icon": "fa-line-chart ",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "385027e716d09b2e",
+        "type": "ui_tab",
+        "name": "Ground Station Systems",
+        "icon": "fa-bug",
         "disabled": false,
         "hidden": false
     }
