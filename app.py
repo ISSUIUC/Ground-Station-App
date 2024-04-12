@@ -43,6 +43,8 @@ class Camera:
 
     def stop_recording(self):
         self.__recording = False
+        self.__video_out.release()
+        self.__video_out = None
 
     def handle_record(self, frame):
         if(self.__recording):
@@ -94,7 +96,7 @@ class Camera:
     def cleanup():
         cv2.destroyAllWindows()
 
-camera = Camera(0)
+camera = Camera(1)
 thread = threading.Thread(target=camera.capture_frames)
 thread.daemon = True
 thread.start()
