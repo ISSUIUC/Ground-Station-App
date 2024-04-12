@@ -10,8 +10,9 @@ app = Flask(__name__)
 
 class Camera:
     def __init__(self, capture_index=0):
+        print("Opening stream")
         self.cap = cv2.VideoCapture(capture_index)  # Using the default webcam (index 0)
-
+        print("cap opened")
         self.__recording = False
         self.__rec_debounce_cur = 0
         self.__rec_toggle = False
@@ -96,7 +97,9 @@ class Camera:
     def cleanup():
         cv2.destroyAllWindows()
 
+print("Opening camera stream..")
 camera = Camera(1)
+print("Opened camera stream.")
 thread = threading.Thread(target=camera.capture_frames)
 thread.daemon = True
 thread.start()

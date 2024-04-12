@@ -8,11 +8,626 @@
         "env": []
     },
     {
+        "id": "279dd11f268d0df7",
+        "type": "tab",
+        "label": "ROCKET RECOVERY",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "a3832ee5d563a633",
+        "type": "tab",
+        "label": "CONTROL DASHBOARD",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "7118924a2645c141",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.0.101",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "152d9aec61c24f73",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "0948613d740142d8",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-dark",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#b51a00",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#097479",
+                    "value": "#b51a00",
+                    "edited": true
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#b51a00",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#ff2702",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#555555",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#eeeeee",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#b51a00",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "62bb3be8655b6b66",
+        "type": "ui_group",
+        "name": "Default",
+        "tab": "152d9aec61c24f73",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "22f394e5.96b87c",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "compatmode": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "352010d7.7bdd4",
+        "type": "ui_tab",
+        "name": "Live Video",
+        "icon": "fa-video-camera",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "f7013d7d.5eb85",
+        "type": "ui_group",
+        "name": "Green",
+        "tab": "352010d7.7bdd4",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "b7fc28ec.02cca8",
+        "type": "ui_group",
+        "name": "blue",
+        "tab": "352010d7.7bdd4",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "ceeff91c.56a9b8",
+        "type": "ui_group",
+        "name": "Clear",
+        "tab": "352010d7.7bdd4",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "34e8a021.21be4",
+        "type": "ui_group",
+        "name": "Red",
+        "tab": "352010d7.7bdd4",
+        "order": 4,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "40cbfaa6.5d37a4",
+        "type": "ui_group",
+        "name": "Day chart",
+        "tab": "b8b5757d.f38bb8",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "b8b5757d.f38bb8",
+        "type": "ui_tab",
+        "name": "Rocket Recovery",
+        "icon": "fa-rocket",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "836aeafb.6b2e98",
+        "type": "ui_group",
+        "name": "IMU",
+        "tab": "b8b5757d.f38bb8",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "4b1f5d5c.eddd44",
+        "type": "ui_tab",
+        "name": "Graphs",
+        "icon": "fa-line-chart ",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "5a4020c2.81e",
+        "type": "ui_group",
+        "name": "Graphs",
+        "tab": "4b1f5d5c.eddd44",
+        "order": 1,
+        "disp": true,
+        "width": "14",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "78575fdf.e65308",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "iot.eclipse.org",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "1424ade0.635bda",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "iot.eclipse.org",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "55ef459f.a99114",
+        "type": "ui_group",
+        "name": "Velocity",
+        "tab": "152d9aec61c24f73",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "df73289f.14496",
+        "type": "ui_group",
+        "name": "Altitude",
+        "tab": "152d9aec61c24f73",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "92daa97d.01534",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "iot.eclipse.org",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "638e76e3.97a0e",
+        "type": "mqtt-broker",
+        "name": "android consumer",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": ""
+    },
+    {
+        "id": "98d3277d22e0e89d",
+        "type": "ui_group",
+        "name": "Acceleration",
+        "tab": "152d9aec61c24f73",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "3d7dab06e72844d8",
+        "type": "ui_group",
+        "name": "Voltage",
+        "tab": "152d9aec61c24f73",
+        "order": 4,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "69c7e0bf55ba177e",
+        "type": "ui_group",
+        "name": "Live Telemetry",
+        "tab": "152d9aec61c24f73",
+        "order": 5,
+        "disp": true,
+        "width": "10",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "46a8ac65.d0f114",
+        "type": "google-cloud-credentials",
+        "name": "IOTFI Credentials"
+    },
+    {
+        "id": "71b170cd.61afd",
+        "type": "google-cloud-credentials",
+        "name": "iotfi"
+    },
+    {
+        "id": "94b2215f.4694",
+        "type": "bigquery-config"
+    },
+    {
+        "id": "7bb06799207e019f",
+        "type": "ui_group",
+        "name": "Pyro status",
+        "tab": "152d9aec61c24f73",
+        "order": 2,
+        "disp": true,
+        "width": "3",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "6b9d9bbc1fd214eb",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "8c640478d6d4c488",
+        "type": "ui_tab",
+        "name": "Cesium",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "a63c67f9e98dd78f",
+        "type": "ui_group",
+        "name": "Default",
+        "tab": "8c640478d6d4c488",
+        "order": 1,
+        "disp": true,
+        "width": "7",
+        "collapse": false
+    },
+    {
+        "id": "1076b87f78fc0f6a",
+        "type": "ui_tab",
+        "name": "Map",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "652e051b84ea7265",
+        "type": "ui_group",
+        "name": "Default",
+        "tab": "1076b87f78fc0f6a",
+        "order": 1,
+        "disp": true,
+        "width": "7",
+        "collapse": false
+    },
+    {
+        "id": "ca2272c3.e8396",
+        "type": "ui_group",
+        "name": "Video",
+        "tab": "352010d7.7bdd4",
+        "order": 1,
+        "disp": true,
+        "width": "10",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "55b13b02706b1c82",
+        "type": "ui_group",
+        "name": "Live Video",
+        "tab": "152d9aec61c24f73",
+        "order": 8,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "e38483790572b1bc",
+        "type": "ui_tab",
+        "name": "Live Video",
+        "icon": "fa-video-camera",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "385027e716d09b2e",
+        "type": "ui_tab",
+        "name": "Ground Station Systems",
+        "icon": "fa-bug",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "35848f461ab4285c",
+        "type": "ui_group",
+        "name": "Status",
+        "tab": "385027e716d09b2e",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "39a992f2d865055f",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.0.100",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "f87baae6074474e7",
+        "type": "ui_group",
+        "name": "Raw Input",
+        "tab": "b8b5757d.f38bb8",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "47c702718724f863",
+        "type": "ui_group",
+        "name": "Drift information",
+        "tab": "b8b5757d.f38bb8",
+        "order": 4,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
         "id": "867723775990be41",
         "type": "mqtt in",
         "z": "97095cca6f5ef9e5",
         "name": "",
-        "topic": "Flightdata",
+        "topic": "FlightData-Sustainer",
         "qos": "2",
         "datatype": "auto-detect",
         "broker": "22f394e5.96b87c",
@@ -20,7 +635,7 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 80,
+        "x": 90,
         "y": 180,
         "wires": [
             [
@@ -41,7 +656,7 @@
         "type": "debug",
         "z": "97095cca6f5ef9e5",
         "name": "debug 1",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -49,7 +664,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 320,
+        "x": 500,
         "y": 120,
         "wires": []
     },
@@ -65,7 +680,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 330,
+        "x": 510,
         "y": 180,
         "wires": [
             [
@@ -85,7 +700,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 780,
+        "x": 960,
         "y": 180,
         "wires": [
             []
@@ -115,7 +730,7 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 1100,
+        "x": 1280,
         "y": 240,
         "wires": []
     },
@@ -131,7 +746,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 320,
+        "x": 500,
         "y": 240,
         "wires": [
             [
@@ -143,15 +758,15 @@
         "id": "960e562150673092",
         "type": "function",
         "z": "97095cca6f5ef9e5",
-        "name": "Clean Float",
-        "func": "// Returns a properly formatted float (:.1f), 1 decimal precision\n\nfunction isNumber(value) {\n  return typeof value === 'number';\n}\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.data && isNumber(msg.payload.data)) {\n    // Round to nearest tenth\n    msg.payload = Math.round(msg.payload.data * 10) / 10;\n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"ERR\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "name": "Clean Float (Alt)",
+        "func": "// Returns a properly formatted float (:.1f), 1 decimal precision\n\nfunction isNumber(value) {\n  return typeof value === 'number';\n}\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.data && isNumber(msg.payload.data)) {\n    // Round to nearest tenth\n    msg.payload = Math.round(msg.payload.data * 10) / 10;\n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"OVERFLOW\";\n}\n\n// Return the modified msg object\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 780,
+        "x": 970,
         "y": 240,
         "wires": [
             [
@@ -172,7 +787,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 520,
+        "x": 700,
         "y": 240,
         "wires": [
             [
@@ -193,7 +808,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 330,
+        "x": 510,
         "y": 300,
         "wires": [
             [
@@ -213,7 +828,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 790,
+        "x": 970,
         "y": 420,
         "wires": [
             [
@@ -245,7 +860,7 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 1100,
+        "x": 1280,
         "y": 420,
         "wires": []
     },
@@ -261,7 +876,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 310,
+        "x": 490,
         "y": 520,
         "wires": [
             [
@@ -281,7 +896,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 310,
+        "x": 490,
         "y": 560,
         "wires": [
             [
@@ -301,7 +916,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 310,
+        "x": 490,
         "y": 600,
         "wires": [
             [
@@ -314,14 +929,14 @@
         "type": "function",
         "z": "97095cca6f5ef9e5",
         "name": "Angle",
-        "func": "// Store state\ncontext.yaw = context.yaw || 0.0;\ncontext.pitch = context.pitch || 0.0;\ncontext.roll = context.roll || 0.0;\n\nfunction isNumber(value) {\n  return typeof value === 'number';\n}\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.context) {\n\n  // Decode inputs\n  if (msg.payload.context === \"yaw\") {\n    context.yaw = msg.payload.data\n  }\n\n  if (msg.payload.context === \"pitch\") {\n    context.pitch = msg.payload.data\n  }\n\n  if (msg.payload.context === \"roll\") {\n    context.roll = msg.payload.data\n  }\n\n  // msg.payload = context.temperature;\n  // let angle = context.pitch**2 + context.yaw**2;\n  // this is wrong, we should fix it!\n  let alpha = context.yaw;\n\n  let angle = Math.abs((57.2958 * alpha) - 90);\n  msg.payload = {context: \"angle\", data: angle};\n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"ERR DECODE \" + msg.payload.context;\n}\n\n// Return the modified msg object\nreturn msg;",
+        "func": "// Store state\ncontext.yaw = context.yaw || 0.0;\ncontext.pitch = context.pitch || 0.0;\ncontext.roll = context.roll || 0.0;\n\nfunction isNumber(value) {\n  return typeof value === 'number';\n}\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.context) {\n\n  // Decode inputs\n  if (msg.payload.context === \"yaw\") {\n    context.yaw = msg.payload.data\n  }\n\n  if (msg.payload.context === \"pitch\") {\n    context.pitch = msg.payload.data\n  }\n\n  if (msg.payload.context === \"roll\") {\n    context.roll = msg.payload.data\n  }\n\n  // msg.payload = context.temperature;\n  // let angle = context.pitch**2 + context.yaw**2;\n  // this is wrong, we should fix it!\n  let alpha = context.yaw;\n\n  let angle = ((57.2958 * alpha) - 90);\n  msg.payload = {context: \"angle\", data: angle};\n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"ERR DECODE \" + msg.payload.context;\n}\n\n// Return the modified msg object\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 510,
+        "x": 690,
         "y": 560,
         "wires": [
             [
@@ -341,7 +956,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 790,
+        "x": 970,
         "y": 560,
         "wires": [
             [
@@ -373,7 +988,7 @@
         "seg2": "",
         "diff": true,
         "className": "",
-        "x": 1090,
+        "x": 1270,
         "y": 560,
         "wires": []
     },
@@ -389,7 +1004,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 310,
+        "x": 490,
         "y": 700,
         "wires": [
             [
@@ -402,14 +1017,14 @@
         "type": "function",
         "z": "97095cca6f5ef9e5",
         "name": "Connection",
-        "func": "// Store state\ncontext.rssi = context.rssi || -999.0;\n\nfunction isNumber(value) {\n  return typeof value === 'number';\n}\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.context && msg.payload.data && isNumber(msg.payload.data)) {\n\n  // Decode inputs\n  if (msg.payload.context === \"rssi\") {\n    context.rssi = msg.payload.data;\n  }\n\n  let connection = \"NONE\";\n  let color = \"#bf0d00\";\n  if(context.rssi > -140) {\n    connection = \"WEAK\";\n    color = \"#ff9e03\";\n  }\n\n  if(context.rssi > -80) {\n    connection = \"OK\";\n    color = \"#ffff03\";\n  }\n\n  if(context.rssi > -55) {\n    connection = \"GOOD\";\n    color = \"#a7ff4f\";\n  }\n\n  if(context.rssi > -30) {\n    connection = \"STRONG\";\n    color = \"#3dff03\";\n  }\n\n  msg.color = color;\n  \n  msg.payload = connection;\n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"ERR\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "func": "// Store state\ncontext.rssi = context.rssi || -999.0;\n\nfunction isNumber(value) {\n  return typeof value === 'number';\n}\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.context && msg.payload.data && isNumber(msg.payload.data)) {\n\n  // Decode inputs\n  if (msg.payload.context === \"rssi\") {\n    context.rssi = msg.payload.data;\n  }\n\n  let connection = \"POOR\";\n  let color = \"#bf0d00\";\n  if(context.rssi > -130) {\n    connection = \"WEAK\";\n    color = \"#ff9e03\";\n  }\n\n  if(context.rssi > -80) {\n    connection = \"OK\";\n    color = \"#ffff03\";\n  }\n\n  if(context.rssi > -55) {\n    connection = \"GOOD\";\n    color = \"#a7ff4f\";\n  }\n\n  if(context.rssi > -30) {\n    connection = \"STRONG\";\n    color = \"#3dff03\";\n  }\n\n  msg.color = color;\n  \n  msg.payload = connection;\n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"ERR\";\n}\n\n// Return the modified msg object\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 530,
+        "x": 710,
         "y": 700,
         "wires": [
             [
@@ -434,7 +1049,7 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 1110,
+        "x": 1290,
         "y": 700,
         "wires": []
     },
@@ -450,7 +1065,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 310,
+        "x": 490,
         "y": 800,
         "wires": [
             [
@@ -473,7 +1088,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 510,
+        "x": 690,
         "y": 800,
         "wires": [
             [
@@ -493,7 +1108,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 750,
+        "x": 930,
         "y": 800,
         "wires": [
             []
@@ -511,7 +1126,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 510,
+        "x": 690,
         "y": 860,
         "wires": [
             [
@@ -531,7 +1146,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 510,
+        "x": 690,
         "y": 920,
         "wires": [
             [
@@ -551,7 +1166,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 510,
+        "x": 690,
         "y": 980,
         "wires": [
             [
@@ -571,7 +1186,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 750,
+        "x": 930,
         "y": 860,
         "wires": [
             []
@@ -589,7 +1204,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 750,
+        "x": 930,
         "y": 920,
         "wires": [
             []
@@ -607,7 +1222,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 750,
+        "x": 930,
         "y": 980,
         "wires": [
             []
@@ -622,13 +1237,13 @@
         "order": 0,
         "width": "10",
         "height": "9",
-        "format": "<iframe src=\"http://192.168.0.69:5001/\" style=\"width:100%; height:100%;\"></iframe>",
+        "format": "<iframe src=\"http://localhost:5001/\" style=\"width:100%; height:100%;\"></iframe>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": false,
         "templateScope": "local",
         "className": "",
-        "x": 520,
+        "x": 700,
         "y": 120,
         "wires": [
             []
@@ -672,7 +1287,7 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 1290,
+        "x": 1470,
         "y": 280,
         "wires": [
             []
@@ -698,7 +1313,7 @@
         "payloadType": "str",
         "topic": "fs",
         "topicType": "msg",
-        "x": 690,
+        "x": 870,
         "y": 120,
         "wires": [
             [
@@ -715,13 +1330,13 @@
         "order": 0,
         "width": 0,
         "height": 0,
-        "format": "<script>\n(function(scope) {\n    scope.$watch('msg.payload', function(data) {\n        if(data === \"redirect\") {\n          // console.log(\"AAAA\", data);\n          window.location.href = \"http://192.168.0.69:5001/video_feed\";\n        }\n    });\n})(scope);\n</script>",
+        "format": "<script>\n(function(scope) {\n    scope.$watch('msg.payload', function(data) {\n        if(data === \"redirect\") {\n          // console.log(\"AAAA\", data);\n          window.location.href = \"http://localhost:5001/video_feed\";\n        }\n    });\n})(scope);\n</script>",
         "storeOutMessages": false,
         "fwdInMessages": true,
         "resendOnRefresh": false,
         "templateScope": "local",
         "className": "",
-        "x": 1020,
+        "x": 1200,
         "y": 120,
         "wires": [
             []
@@ -744,7 +1359,7 @@
         "bytopic": "all",
         "topic": "topic",
         "outputs": 1,
-        "x": 860,
+        "x": 1040,
         "y": 120,
         "wires": [
             [
@@ -764,7 +1379,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 780,
+        "x": 960,
         "y": 300,
         "wires": [
             [
@@ -780,7 +1395,7 @@
         "links": [
             "f2dc6c1da6e5a2f2"
         ],
-        "x": 495,
+        "x": 675,
         "y": 360,
         "wires": [
             [
@@ -803,7 +1418,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 950,
+        "x": 1130,
         "y": 300,
         "wires": [
             [
@@ -823,7 +1438,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 780,
+        "x": 960,
         "y": 360,
         "wires": [
             [
@@ -846,7 +1461,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 950,
+        "x": 1130,
         "y": 360,
         "wires": [
             [
@@ -892,7 +1507,7 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 1290,
+        "x": 1470,
         "y": 380,
         "wires": [
             []
@@ -903,15 +1518,15 @@
         "type": "mqtt in",
         "z": "97095cca6f5ef9e5",
         "name": "",
-        "topic": "Flightdata",
+        "topic": "FlightData-Sustainer",
         "qos": "2",
         "datatype": "auto-detect",
-        "broker": "39a992f2d865055f",
+        "broker": "22f394e5.96b87c",
         "nl": false,
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 100,
+        "x": 110,
         "y": 1940,
         "wires": [
             [
@@ -927,7 +1542,7 @@
         "links": [
             "f2dc6c1da6e5a2f2"
         ],
-        "x": 495,
+        "x": 675,
         "y": 300,
         "wires": [
             [
@@ -943,7 +1558,7 @@
         "links": [
             "a0cc86e0b50faa78"
         ],
-        "x": 1135,
+        "x": 1315,
         "y": 340,
         "wires": [
             [
@@ -960,7 +1575,7 @@
         "method": "GET",
         "ret": "txt",
         "paytoqs": "ignore",
-        "url": "http://192.168.0.69:5001/ping",
+        "url": "http://192.168.0.42:5001/ping",
         "tls": "",
         "persist": false,
         "proxy": "",
@@ -968,7 +1583,7 @@
         "authType": "",
         "senderr": false,
         "headers": [],
-        "x": 270,
+        "x": 330,
         "y": 1680,
         "wires": [
             [
@@ -993,7 +1608,7 @@
         "topic": "",
         "payload": "true",
         "payloadType": "bool",
-        "x": 90,
+        "x": 150,
         "y": 1680,
         "wires": [
             [
@@ -1010,7 +1625,7 @@
             "3308feb638f78b60"
         ],
         "uncaught": false,
-        "x": 310,
+        "x": 370,
         "y": 1740,
         "wires": [
             []
@@ -1031,7 +1646,7 @@
         "className": "",
         "topic": "Live Video enabled!",
         "name": "",
-        "x": 1320,
+        "x": 1380,
         "y": 1680,
         "wires": []
     },
@@ -1052,7 +1667,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 810,
+        "x": 870,
         "y": 1680,
         "wires": [
             [
@@ -1073,7 +1688,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 500,
+        "x": 560,
         "y": 1680,
         "wires": [
             [
@@ -1101,7 +1716,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1020,
+        "x": 1080,
         "y": 1680,
         "wires": [
             [
@@ -1128,7 +1743,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1020,
+        "x": 1080,
         "y": 1800,
         "wires": [
             [
@@ -1153,7 +1768,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 810,
+        "x": 870,
         "y": 1760,
         "wires": [
             [
@@ -1177,7 +1792,7 @@
         "className": "",
         "topic": "Live Video disabled",
         "name": "",
-        "x": 1320,
+        "x": 1380,
         "y": 1800,
         "wires": []
     },
@@ -1200,7 +1815,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1020,
+        "x": 1080,
         "y": 1760,
         "wires": [
             [
@@ -1226,7 +1841,7 @@
         "font": "",
         "fontSize": "8",
         "color": "#ffffff",
-        "x": 1600,
+        "x": 1660,
         "y": 1720,
         "wires": []
     },
@@ -1249,7 +1864,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1020,
+        "x": 1080,
         "y": 1720,
         "wires": [
             [
@@ -1275,7 +1890,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 690,
+        "x": 750,
         "y": 1760,
         "wires": [
             [
@@ -1294,7 +1909,7 @@
         "createDir": true,
         "overwriteFile": "false",
         "encoding": "none",
-        "x": 1050,
+        "x": 1110,
         "y": 1940,
         "wires": [
             []
@@ -1308,7 +1923,7 @@
         "property": "payload",
         "action": "",
         "pretty": false,
-        "x": 710,
+        "x": 770,
         "y": 1940,
         "wires": [
             [
@@ -1322,7 +1937,7 @@
         "z": "97095cca6f5ef9e5",
         "name": "Live video",
         "info": "",
-        "x": 680,
+        "x": 820,
         "y": 80,
         "wires": []
     },
@@ -1332,7 +1947,7 @@
         "z": "97095cca6f5ef9e5",
         "name": "Video system status polling",
         "info": "",
-        "x": 290,
+        "x": 350,
         "y": 1640,
         "wires": []
     },
@@ -1342,7 +1957,7 @@
         "z": "97095cca6f5ef9e5",
         "name": "Datalogging",
         "info": "",
-        "x": 290,
+        "x": 350,
         "y": 1900,
         "wires": []
     },
@@ -1358,7 +1973,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 690,
+        "x": 750,
         "y": 1980,
         "wires": [
             [
@@ -1377,7 +1992,7 @@
         "createDir": true,
         "overwriteFile": "false",
         "encoding": "none",
-        "x": 1050,
+        "x": 1110,
         "y": 1980,
         "wires": [
             []
@@ -1395,7 +2010,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 300,
+        "x": 360,
         "y": 1940,
         "wires": [
             [
@@ -1411,7 +2026,7 @@
         "links": [
             "589911925ca3e832"
         ],
-        "x": 145,
+        "x": 205,
         "y": 1980,
         "wires": [
             [
@@ -1434,7 +2049,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 450,
+        "x": 510,
         "y": 1940,
         "wires": [
             [
@@ -1460,7 +2075,7 @@
         "font": "",
         "fontSize": "8",
         "color": "#ffffff",
-        "x": 1600,
+        "x": 1660,
         "y": 1760,
         "wires": []
     },
@@ -1469,7 +2084,7 @@
         "type": "mqtt in",
         "z": "97095cca6f5ef9e5",
         "name": "",
-        "topic": "Flightdata",
+        "topic": "FlightData-Sustainer",
         "qos": "2",
         "datatype": "auto-detect",
         "broker": "22f394e5.96b87c",
@@ -1477,7 +2092,7 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 80,
+        "x": 90,
         "y": 1260,
         "wires": [
             [
@@ -1499,7 +2114,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 240,
+        "x": 300,
         "y": 1220,
         "wires": [
             [
@@ -1519,7 +2134,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 240,
+        "x": 300,
         "y": 1260,
         "wires": [
             [
@@ -1539,7 +2154,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 240,
+        "x": 300,
         "y": 1300,
         "wires": [
             [
@@ -1552,14 +2167,14 @@
         "type": "function",
         "z": "97095cca6f5ef9e5",
         "name": "Decode Accelerometer",
-        "func": "// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.context && msg.payload.data) {\n    msg.topic = msg.payload.context;\n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"Error: Invalid payload structure\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "func": "// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.context) {\n    msg.topic = msg.payload.context;\n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"Error: Invalid payload structure\";\n}\n\n// Return the modified msg object\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 440,
+        "x": 500,
         "y": 1220,
         "wires": [
             [
@@ -1606,7 +2221,7 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 1060,
+        "x": 1120,
         "y": 1340,
         "wires": [
             []
@@ -1617,14 +2232,14 @@
         "type": "function",
         "z": "97095cca6f5ef9e5",
         "name": "Decode Accelerometer",
-        "func": "// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.context && msg.payload.data) {\n    msg.topic = msg.payload.context;\n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"Error: Invalid payload structure\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "func": "// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.context) {\n    msg.topic = msg.payload.context;\n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"Error: Invalid payload structure\";\n}\n\n// Return the modified msg object\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 440,
+        "x": 500,
         "y": 1260,
         "wires": [
             [
@@ -1637,14 +2252,14 @@
         "type": "function",
         "z": "97095cca6f5ef9e5",
         "name": "Decode Accelerometer",
-        "func": "// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.context && msg.payload.data) {\n    msg.topic = msg.payload.context;\n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"Error: Invalid payload structure\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "func": "// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.context) {\n    msg.topic = msg.payload.context;\n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"Error: Invalid payload structure\";\n}\n\n// Return the modified msg object\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 440,
+        "x": 500,
         "y": 1300,
         "wires": [
             [
@@ -1660,7 +2275,7 @@
         "links": [
             "a0cc86e0b50faa78"
         ],
-        "x": 865,
+        "x": 925,
         "y": 1180,
         "wires": [
             [
@@ -1680,7 +2295,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 700,
+        "x": 760,
         "y": 1220,
         "wires": [
             [
@@ -1703,7 +2318,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 830,
+        "x": 890,
         "y": 1220,
         "wires": [
             [
@@ -1719,7 +2334,7 @@
         "links": [
             "f2dc6c1da6e5a2f2"
         ],
-        "x": 525,
+        "x": 585,
         "y": 1180,
         "wires": [
             [
@@ -1741,7 +2356,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 700,
+        "x": 760,
         "y": 1260,
         "wires": [
             [
@@ -1761,7 +2376,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 700,
+        "x": 760,
         "y": 1300,
         "wires": [
             [
@@ -1784,7 +2399,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 830,
+        "x": 890,
         "y": 1260,
         "wires": [
             [
@@ -1807,7 +2422,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 830,
+        "x": 890,
         "y": 1300,
         "wires": [
             [
@@ -1829,7 +2444,7 @@
         "label": "m/s^2",
         "format": "{{value}}",
         "min": 0,
-        "max": "45000",
+        "max": "500",
         "colors": [
             "#800000",
             "#ff0000",
@@ -1839,7 +2454,7 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 1050,
+        "x": 1150,
         "y": 1420,
         "wires": []
     },
@@ -1848,7 +2463,7 @@
         "type": "mqtt out",
         "z": "97095cca6f5ef9e5",
         "name": "",
-        "topic": "Flightdata",
+        "topic": "FlightData-Sustainer",
         "qos": "",
         "retain": "",
         "respTopic": "",
@@ -1856,8 +2471,8 @@
         "userProps": "",
         "correl": "",
         "expiry": "",
-        "broker": "6b9d9bbc1fd214eb",
-        "x": 640,
+        "broker": "22f394e5.96b87c",
+        "x": 740,
         "y": 2480,
         "wires": []
     },
@@ -1870,7 +2485,7 @@
         "links": [
             "df0fb1955cbad469"
         ],
-        "x": 1055,
+        "x": 1235,
         "y": 200,
         "wires": []
     },
@@ -1880,7 +2495,7 @@
         "z": "97095cca6f5ef9e5",
         "name": "Calculate velocity",
         "info": "",
-        "x": 300,
+        "x": 360,
         "y": 2140,
         "wires": []
     },
@@ -1892,7 +2507,7 @@
         "links": [
             "ce81cdf3e083e965"
         ],
-        "x": 165,
+        "x": 225,
         "y": 2200,
         "wires": [
             [
@@ -1905,14 +2520,14 @@
         "type": "function",
         "z": "97095cca6f5ef9e5",
         "name": "Integrator",
-        "func": "// PREREQ: MUST BE NUMBER !\nconst cbuf_size = 3\n\nfunction calculateSlope(xValues, yValues) {\n    if (xValues.length !== yValues.length || xValues.length < 2) {\n        return 0\n    }\n\n    let sumX = 0;\n    let sumY = 0;\n    let sumXY = 0;\n    let sumXX = 0;\n\n    for (let i = 0; i < xValues.length; i++) {\n        sumX += xValues[i];\n        sumY += yValues[i];\n        sumXY += xValues[i] * yValues[i];\n        sumXX += xValues[i] * xValues[i];\n    }\n\n    const n = xValues.length;\n    const slope = (n * sumXY - sumX * sumY) / (n * sumXX - sumX * sumX);\n    return slope;\n}\n\ncontext.cbuf = context.cbuf || []\ncontext.cbuf_t = context.cbuf_t || []\n\nfunction isNumber(value) {\n  return typeof value === 'number';\n}\n\nif(!isNumber(msg.payload)) {\n    return msg;\n}\n\n// circular buffer\ncontext.cbuf.push(msg.payload);\ncontext.cbuf_t.push(Date.now())\nif(context.cbuf.length > cbuf_size) {\n  context.cbuf.shift();\n  context.cbuf_t.shift();\n}\n\nlet dt_buf = context.cbuf_t.map(t => ((Date.now() - t)/1000));\n\nlet m = calculateSlope(dt_buf, context.cbuf)\nif(isFinite(m)) {\n  msg.payload = -m;\n} else {\n  msg.payload = 0;\n}\n\n\n// msg.payload = context.cbuf.reduce((accumulator, currentValue) => {\n//   return accumulator + currentValue\n// },0)/cbuf_size;\n\n\n\n\nreturn msg;",
+        "func": "// PREREQ: MUST BE NUMBER !\nconst cbuf_size = 30\n\nfunction calculateSlope(xValues, yValues) {\n    if (xValues.length !== yValues.length || xValues.length < 2) {\n        return 0\n    }\n\n    let sumX = 0;\n    let sumY = 0;\n    let sumXY = 0;\n    let sumXX = 0;\n\n    for (let i = 0; i < xValues.length; i++) {\n        sumX += xValues[i];\n        sumY += yValues[i];\n        sumXY += xValues[i] * yValues[i];\n        sumXX += xValues[i] * xValues[i];\n    }\n\n    const n = xValues.length;\n    const slope = (n * sumXY - sumX * sumY) / (n * sumXX - sumX * sumX);\n    return slope;\n}\n\ncontext.cbuf = context.cbuf || []\ncontext.cbuf_t = context.cbuf_t || []\n\nfunction isNumber(value) {\n  return typeof value === 'number';\n}\n\nif(!isNumber(msg.payload)) {\n    return msg;\n}\n\n// circular buffer\ncontext.cbuf.push(msg.payload);\ncontext.cbuf_t.push(Date.now())\nif(context.cbuf.length > cbuf_size) {\n  context.cbuf.shift();\n  context.cbuf_t.shift();\n}\n\nlet dt_buf = context.cbuf_t.map(t => ((Date.now() - t)/1000));\n\nlet m = calculateSlope(dt_buf, context.cbuf)\nif(isFinite(m)) {\n  msg.payload = -m;\n} else {\n  msg.payload = 0;\n}\n\n\n// msg.payload = context.cbuf.reduce((accumulator, currentValue) => {\n//   return accumulator + currentValue\n// },0)/cbuf_size;\n\n\n\n\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 280,
+        "x": 340,
         "y": 2200,
         "wires": [
             [
@@ -1932,7 +2547,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 310,
+        "x": 490,
         "y": 1080,
         "wires": [
             [
@@ -1952,7 +2567,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 530,
+        "x": 710,
         "y": 1080,
         "wires": [
             [
@@ -1972,7 +2587,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 760,
+        "x": 940,
         "y": 1080,
         "wires": [
             [
@@ -1995,7 +2610,7 @@
         "className": "",
         "topic": "FSM State Update",
         "name": "",
-        "x": 1120,
+        "x": 1300,
         "y": 1080,
         "wires": []
     },
@@ -2016,7 +2631,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 930,
+        "x": 1110,
         "y": 1080,
         "wires": [
             [
@@ -2036,7 +2651,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 700,
+        "x": 760,
         "y": 1420,
         "wires": [
             [
@@ -2057,7 +2672,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1080,
+        "x": 1140,
         "y": 1520,
         "wires": []
     },
@@ -2066,14 +2681,14 @@
         "type": "function",
         "z": "97095cca6f5ef9e5",
         "name": "Clean Float",
-        "func": "// Returns a properly formatted float (:.1f), 1 decimal precision\n\nfunction isNumber(value) {\n  return typeof value === 'number';\n}\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.data && isNumber(msg.payload.data)) {\n    // Round to nearest tenth\n    msg.payload = Math.round(msg.payload.data * 10) / 10;\n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"ERR\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "func": "// Returns a properly formatted float (:.1f), 1 decimal precision\n\nfunction isNumber(value) {\n  return typeof value === 'number';\n}\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload && isNumber(msg.payload.data)) {\n    // Round to nearest tenth\n    msg.payload = Math.round(msg.payload.data * 10) / 10;\n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"ERR\";\n}\n\n// Return the modified msg object\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 890,
+        "x": 950,
         "y": 1420,
         "wires": [
             [
@@ -2101,9 +2716,9 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "{\"type\":\"data\",\"value\":{\"gps_lat\":0,\"gps_long\":0,\"gps_alt\":100,\"KX_IMU_ax\":0.31641,\"KX_IMU_ay\":0.09766,\"KX_IMU_az\":1.02734,\"LOW_G_LSM_ax\":0,\"LOW_G_LSM_ay\":0,\"LOW_G_LSM_az\":0,\"IMU_gx\":1.375,\"IMU_gy\":-0.125,\"IMU_gz\":2.125,\"IMU_mx\":-0.68872,\"IMU_my\":0.75269,\"IMU_mz\":-2.66418,\"FSM_state\":0,\"sign\":\"KD9ZMJ\",\"RSSI\":-128,\"Voltage\":0.375,\"Continuity1\":0,\"Continuity2\":1.875,\"Continuity3\":0,\"Continuity4\":0,\"Pyro1\":0,\"Pyro2\":0,\"Pyro3\":0,\"Pyro4\":0,\"Pyro1Firing\":0,\"Pyro2Firing\":0,\"Pyro3Firing\":0,\"Pyro4Firing\":0,\"TelemLatency\":260,\"LogLatency\":0,\"is_booster\":0,\"sense_pyro\":0,\"BNO_YAW\":0,\"BNO_PITCH\":0,\"BNO_ROLL\":0,\"TEMP\":28.48828,\"pressure\":10.375}}",
+        "payload": "{\"type\":\"data\",\"value\":{\"gps_lat\":20,\"gps_long\":50,\"gps_alt\":100,\"KX_IMU_ax\":0.31641,\"KX_IMU_ay\":0.09766,\"KX_IMU_az\":1.02734,\"LOW_G_LSM_ax\":0,\"LOW_G_LSM_ay\":0,\"LOW_G_LSM_az\":0,\"IMU_gx\":1.375,\"IMU_gy\":-0.125,\"IMU_gz\":2.125,\"IMU_mx\":-0.68872,\"IMU_my\":0.75269,\"IMU_mz\":-2.66418,\"FSM_state\":0,\"sign\":\"KD9ZMJ\",\"RSSI\":-128,\"Voltage\":0.375,\"Continuity1\":0,\"Continuity2\":1.875,\"Continuity3\":0,\"Continuity4\":0,\"Pyro1\":0,\"Pyro2\":0,\"Pyro3\":0,\"Pyro4\":0,\"Pyro1Firing\":0,\"Pyro2Firing\":0,\"Pyro3Firing\":0,\"Pyro4Firing\":0,\"TelemLatency\":260,\"LogLatency\":0,\"is_booster\":0,\"sense_pyro\":0,\"BNO_YAW\":0,\"BNO_PITCH\":0,\"BNO_ROLL\":0,\"TEMP\":28.48828,\"pressure\":10.375}}",
         "payloadType": "json",
-        "x": 470,
+        "x": 530,
         "y": 2520,
         "wires": [
             [
@@ -2120,7 +2735,7 @@
         "links": [
             "59aa6d59383fcb08"
         ],
-        "x": 395,
+        "x": 455,
         "y": 2200,
         "wires": []
     },
@@ -2145,7 +2760,7 @@
         "topic": "",
         "payload": "{\"type\":\"data\",\"value\":{\"gps_lat\":0,\"gps_long\":0,\"gps_alt\":100,\"KX_IMU_ax\":0.31641,\"KX_IMU_ay\":0.09766,\"KX_IMU_az\":1.02734,\"LOW_G_LSM_ax\":0,\"LOW_G_LSM_ay\":0,\"LOW_G_LSM_az\":0,\"IMU_gx\":1.375,\"IMU_gy\":-0.125,\"IMU_gz\":2.125,\"IMU_mx\":-0.68872,\"IMU_my\":0.75269,\"IMU_mz\":-2.66418,\"FSM_state\":0,\"sign\":\"KD9ZMJ\",\"RSSI\":-128,\"Voltage\":0.375,\"Continuity1\":0,\"Continuity2\":1.875,\"Continuity3\":0,\"Continuity4\":0,\"Pyro1\":0,\"Pyro2\":0,\"Pyro3\":0,\"Pyro4\":0,\"Pyro1Firing\":0,\"Pyro2Firing\":0,\"Pyro3Firing\":0,\"Pyro4Firing\":0,\"TelemLatency\":260,\"LogLatency\":0,\"is_booster\":0,\"sense_pyro\":0,\"BNO_YAW\":0,\"BNO_PITCH\":0,\"BNO_ROLL\":0,\"TEMP\":28.48828,\"pressure\":1000.375}}",
         "payloadType": "json",
-        "x": 470,
+        "x": 530,
         "y": 2480,
         "wires": [
             [
@@ -2161,7 +2776,7 @@
         "links": [
             "fd350fa3fb129cfc"
         ],
-        "x": 305,
+        "x": 485,
         "y": 420,
         "wires": [
             [
@@ -2181,7 +2796,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 420,
+        "x": 600,
         "y": 420,
         "wires": [
             [
@@ -2191,168 +2806,1468 @@
         ]
     },
     {
-        "id": "22f394e5.96b87c",
-        "type": "mqtt-broker",
+        "id": "1766c7efcdd4abac",
+        "type": "inject",
+        "z": "279dd11f268d0df7",
+        "name": "RESET GPS",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"context\":\"gps_reset\",\"data\":true}",
+        "payloadType": "json",
+        "x": 130,
+        "y": 40,
+        "wires": [
+            [
+                "f4064639367d29fd",
+                "ad0f8a9a7b7279b6"
+            ]
+        ]
+    },
+    {
+        "id": "f4064639367d29fd",
+        "type": "change",
+        "z": "279dd11f268d0df7",
         "name": "",
-        "broker": "localhost",
-        "port": "1883",
-        "clientid": "",
-        "autoConnect": true,
-        "usetls": false,
-        "compatmode": false,
-        "protocolVersion": "4",
-        "keepalive": "60",
-        "cleansession": true,
-        "birthTopic": "",
-        "birthQos": "0",
-        "birthRetain": "false",
-        "birthPayload": "",
-        "birthMsg": {},
-        "closeTopic": "",
-        "closeQos": "0",
-        "closeRetain": "false",
-        "closePayload": "",
-        "closeMsg": {},
-        "willTopic": "",
-        "willQos": "0",
-        "willRetain": "false",
-        "willPayload": "",
-        "willMsg": {},
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Pad GPS coordinates have been reset",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 380,
+        "y": 100,
+        "wires": [
+            [
+                "a02bfc51958402b3"
+            ]
+        ]
+    },
+    {
+        "id": "a02bfc51958402b3",
+        "type": "ui_toast",
+        "z": "279dd11f268d0df7",
+        "position": "top right",
+        "displayTime": "5",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 560,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "1f7516443a6b713c",
+        "type": "mqtt in",
+        "z": "279dd11f268d0df7",
+        "name": "",
+        "topic": "Flightdata",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "39a992f2d865055f",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 100,
+        "y": 300,
+        "wires": [
+            [
+                "eb982ba7cf588ba7"
+            ]
+        ]
+    },
+    {
+        "id": "eb982ba7cf588ba7",
+        "type": "function",
+        "z": "279dd11f268d0df7",
+        "name": "GPS",
+        "func": "// Assuming msg.payload is the provided object\nconst param_decode = [\"gps_lat\", \"gps_long\"];\nconst output_context = \"gps\"\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload && msg.payload.type === \"data\" && msg.payload.value) {\n    let new_payload = {};\n    param_decode.forEach((param) => {\n        if(typeof msg.payload.value[param] === \"undefined\") {\n            msg.payload = \"Error: Missing params\";\n            return msg;\n        } else {\n            new_payload[param] = msg.payload.value[param];\n        }\n    });\n    \n    if(param_decode.length == 1) {\n        // Simple case, if only 1 param\n        new_payload = new_payload[param_decode[0]];\n    } \n\n    // Context to allow for multiple inputs down the line\n    msg.payload = {context: output_context, data: new_payload};\n    \n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"Error: Invalid payload structure\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 250,
+        "y": 300,
+        "wires": [
+            [
+                "ad0f8a9a7b7279b6",
+                "25e3284ba0af6705",
+                "ef07f310be5a94e4"
+            ]
+        ]
+    },
+    {
+        "id": "ad0f8a9a7b7279b6",
+        "type": "function",
+        "z": "279dd11f268d0df7",
+        "name": "Tracker",
+        "func": "context.lat = context.lat || 0;\ncontext.long = context.long || 0;\ncontext.s_lat = context.s_lat || 0;\ncontext.s_long = context.s_long || 0;\n\n\nif(msg.payload.context == \"gps_reset\") {\n    context.s_lat = context.lat;\n    context.s_long = context.long;\n} \n\nif(msg.payload.context == \"gps\") {\n    context.lat = msg.payload.data.gps_lat;\n    context.long = msg.payload.data.gps_long;\n}\n\n\n\nlet lat_diff = context.lat - context.s_lat;\nlet long_diff = context.long - context.s_long;\n\nmsg.payload = {context:\"gps_diff\",data:{lat:lat_diff,long:long_diff,s_lat:context.s_lat,s_long:context.s_long}};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 300,
+        "wires": [
+            [
+                "fa2a12bb9e1f68d0",
+                "1db545c350eb7e1b",
+                "068af1d77221299a",
+                "9280a15efa4c16e3"
+            ]
+        ]
+    },
+    {
+        "id": "25e3284ba0af6705",
+        "type": "function",
+        "z": "279dd11f268d0df7",
+        "name": "Latitude",
+        "func": "function isNumber(value) {\n  return typeof value === 'number';\n}\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload) {\n  msg.payload = {context: \"lat\", data: msg.payload.data.gps_lat};\n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"ERR DECODE \" + msg.payload.context;\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 500,
+        "wires": [
+            [
+                "4e6990e7f93de539"
+            ]
+        ]
+    },
+    {
+        "id": "30672ff814056b46",
+        "type": "ui_text",
+        "z": "279dd11f268d0df7",
+        "group": "f87baae6074474e7",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Current Latitude:",
+        "format": "{{msg.payload}}°",
+        "layout": "row-center",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 910,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "ef07f310be5a94e4",
+        "type": "function",
+        "z": "279dd11f268d0df7",
+        "name": "Longitude",
+        "func": "function isNumber(value) {\n  return typeof value === 'number';\n}\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload) {\n  msg.payload = {context: \"long\", data: msg.payload.data.gps_long};\n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"ERR DECODE \" + msg.payload.context;\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 560,
+        "wires": [
+            [
+                "d6f77fdce04b0e2c"
+            ]
+        ]
+    },
+    {
+        "id": "4e6990e7f93de539",
+        "type": "function",
+        "z": "279dd11f268d0df7",
+        "name": "Clean Float",
+        "func": "// Returns a properly formatted float (:.1f), 1 decimal precision\n\nfunction isNumber(value) {\n  return typeof value === 'number';\n}\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload) {\n    // Round to nearest tenth\n    msg.payload = Math.round(msg.payload.data * 10) / 10;\n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"ERR\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 500,
+        "wires": [
+            [
+                "30672ff814056b46"
+            ]
+        ]
+    },
+    {
+        "id": "d6f77fdce04b0e2c",
+        "type": "function",
+        "z": "279dd11f268d0df7",
+        "name": "Clean Float",
+        "func": "// Returns a properly formatted float (:.1f), 1 decimal precision\n\nfunction isNumber(value) {\n  return typeof value === 'number';\n}\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload) {\n    // Round to nearest tenth\n    msg.payload = Math.round(msg.payload.data * 10) / 10;\n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"ERR\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 560,
+        "wires": [
+            [
+                "7593aeab9beb0b63"
+            ]
+        ]
+    },
+    {
+        "id": "7593aeab9beb0b63",
+        "type": "ui_text",
+        "z": "279dd11f268d0df7",
+        "group": "f87baae6074474e7",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Current Longitude:",
+        "format": "{{msg.payload}}°",
+        "layout": "row-center",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 910,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "30776b681e733287",
+        "type": "mqtt out",
+        "z": "279dd11f268d0df7",
+        "name": "",
+        "topic": "Flightdata",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
         "userProps": "",
-        "sessionExpiry": ""
+        "correl": "",
+        "expiry": "",
+        "broker": "6b9d9bbc1fd214eb",
+        "x": 520,
+        "y": 660,
+        "wires": []
     },
     {
-        "id": "69c7e0bf55ba177e",
-        "type": "ui_group",
-        "name": "Live Telemetry",
-        "tab": "152d9aec61c24f73",
-        "order": 5,
-        "disp": true,
-        "width": "10",
-        "collapse": false,
-        "className": ""
+        "id": "fa9d308649d20dcc",
+        "type": "inject",
+        "z": "279dd11f268d0df7",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"type\":\"data\",\"value\":{\"gps_lat\":0.25,\"gps_long\":0.12874,\"gps_alt\":100,\"KX_IMU_ax\":0.31641,\"KX_IMU_ay\":0.09766,\"KX_IMU_az\":1.02734,\"LOW_G_LSM_ax\":0,\"LOW_G_LSM_ay\":0,\"LOW_G_LSM_az\":0,\"IMU_gx\":1.375,\"IMU_gy\":-0.125,\"IMU_gz\":2.125,\"IMU_mx\":-0.68872,\"IMU_my\":0.75269,\"IMU_mz\":-2.66418,\"FSM_state\":0,\"sign\":\"KD9ZMJ\",\"RSSI\":-128,\"Voltage\":0.375,\"Continuity1\":0,\"Continuity2\":1.875,\"Continuity3\":0,\"Continuity4\":0,\"Pyro1\":0,\"Pyro2\":0,\"Pyro3\":0,\"Pyro4\":0,\"Pyro1Firing\":0,\"Pyro2Firing\":0,\"Pyro3Firing\":0,\"Pyro4Firing\":0,\"TelemLatency\":260,\"LogLatency\":0,\"is_booster\":0,\"sense_pyro\":0,\"BNO_YAW\":0,\"BNO_PITCH\":0,\"BNO_ROLL\":0,\"TEMP\":28.48828,\"pressure\":10.375}}",
+        "payloadType": "json",
+        "x": 350,
+        "y": 700,
+        "wires": [
+            [
+                "30776b681e733287"
+            ]
+        ]
     },
     {
-        "id": "ca2272c3.e8396",
-        "type": "ui_group",
-        "name": "Video",
-        "tab": "352010d7.7bdd4",
-        "order": 1,
-        "disp": true,
-        "width": "10",
-        "collapse": false,
-        "className": ""
+        "id": "6be004f3506c9703",
+        "type": "inject",
+        "z": "279dd11f268d0df7",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"type\":\"data\",\"value\":{\"gps_lat\":0,\"gps_long\":0,\"gps_alt\":100,\"KX_IMU_ax\":0.31641,\"KX_IMU_ay\":0.09766,\"KX_IMU_az\":1.02734,\"LOW_G_LSM_ax\":0,\"LOW_G_LSM_ay\":0,\"LOW_G_LSM_az\":0,\"IMU_gx\":1.375,\"IMU_gy\":-0.125,\"IMU_gz\":2.125,\"IMU_mx\":-0.68872,\"IMU_my\":0.75269,\"IMU_mz\":-2.66418,\"FSM_state\":0,\"sign\":\"KD9ZMJ\",\"RSSI\":-128,\"Voltage\":0.375,\"Continuity1\":0,\"Continuity2\":1.875,\"Continuity3\":0,\"Continuity4\":0,\"Pyro1\":0,\"Pyro2\":0,\"Pyro3\":0,\"Pyro4\":0,\"Pyro1Firing\":0,\"Pyro2Firing\":0,\"Pyro3Firing\":0,\"Pyro4Firing\":0,\"TelemLatency\":260,\"LogLatency\":0,\"is_booster\":0,\"sense_pyro\":0,\"BNO_YAW\":0,\"BNO_PITCH\":0,\"BNO_ROLL\":0,\"TEMP\":28.48828,\"pressure\":1000.375}}",
+        "payloadType": "json",
+        "x": 350,
+        "y": 660,
+        "wires": [
+            [
+                "30776b681e733287"
+            ]
+        ]
     },
     {
-        "id": "5a4020c2.81e",
-        "type": "ui_group",
-        "name": "Graphs",
-        "tab": "4b1f5d5c.eddd44",
-        "order": 1,
-        "disp": true,
+        "id": "fa2a12bb9e1f68d0",
+        "type": "function",
+        "z": "279dd11f268d0df7",
+        "name": "Saved Lat",
+        "func": "function isNumber(value) {\n  return typeof value === 'number';\n}\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload) {\n  msg.payload = {context: \"lat\", data: msg.payload.data.s_lat};\n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"ERR DECODE \" + msg.payload.context;\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 220,
+        "wires": [
+            [
+                "c5179bb9ae29a238"
+            ]
+        ]
+    },
+    {
+        "id": "c5179bb9ae29a238",
+        "type": "function",
+        "z": "279dd11f268d0df7",
+        "name": "Clean Float",
+        "func": "// Returns a properly formatted float (:.1f), 1 decimal precision\n\nfunction isNumber(value) {\n  return typeof value === 'number';\n}\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload) {\n    // Round to nearest tenth\n    msg.payload = Math.round(msg.payload.data * 10) / 10;\n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"ERR\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 770,
+        "y": 220,
+        "wires": [
+            [
+                "08d99ada24df98d8"
+            ]
+        ]
+    },
+    {
+        "id": "08d99ada24df98d8",
+        "type": "ui_text",
+        "z": "279dd11f268d0df7",
+        "group": "47c702718724f863",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Pad latitude:",
+        "format": "{{msg.payload}}°",
+        "layout": "row-center",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 1110,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "1db545c350eb7e1b",
+        "type": "function",
+        "z": "279dd11f268d0df7",
+        "name": "Saved Long",
+        "func": "function isNumber(value) {\n  return typeof value === 'number';\n}\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload) {\n  msg.payload = {context: \"lat\", data: msg.payload.data.s_long};\n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"ERR DECODE \" + msg.payload.context;\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 610,
+        "y": 260,
+        "wires": [
+            [
+                "685a3eb57023a2c0"
+            ]
+        ]
+    },
+    {
+        "id": "685a3eb57023a2c0",
+        "type": "function",
+        "z": "279dd11f268d0df7",
+        "name": "Clean Float",
+        "func": "// Returns a properly formatted float (:.1f), 1 decimal precision\n\nfunction isNumber(value) {\n  return typeof value === 'number';\n}\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload) {\n    // Round to nearest tenth\n    msg.payload = Math.round(msg.payload.data * 10) / 10;\n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"ERR\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 770,
+        "y": 260,
+        "wires": [
+            [
+                "d1c9db129a405950"
+            ]
+        ]
+    },
+    {
+        "id": "d1c9db129a405950",
+        "type": "ui_text",
+        "z": "279dd11f268d0df7",
+        "group": "47c702718724f863",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Pad longitude:",
+        "format": "{{msg.payload}}°",
+        "layout": "row-center",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 1120,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "068af1d77221299a",
+        "type": "function",
+        "z": "279dd11f268d0df7",
+        "name": "D Lat",
+        "func": "function isNumber(value) {\n  return typeof value === 'number';\n}\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload) {\n  msg.payload = {context: \"lat\", data: msg.payload.data.lat};\n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"ERR DECODE \" + msg.payload.context;\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 300,
+        "wires": [
+            [
+                "b6ddf629f392b91f"
+            ]
+        ]
+    },
+    {
+        "id": "b6ddf629f392b91f",
+        "type": "function",
+        "z": "279dd11f268d0df7",
+        "name": "Clean Float",
+        "func": "// Returns a properly formatted float (:.1f), 1 decimal precision\n\nfunction isNumber(value) {\n  return typeof value === 'number';\n}\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload) {\n    // Round to nearest tenth\n    msg.payload = Math.round(msg.payload.data * 10) / 10;\n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"ERR\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 770,
+        "y": 300,
+        "wires": [
+            [
+                "671bdc2499b9dedc",
+                "6666d1eb5d6a8132"
+            ]
+        ]
+    },
+    {
+        "id": "671bdc2499b9dedc",
+        "type": "ui_text",
+        "z": "279dd11f268d0df7",
+        "group": "47c702718724f863",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Latitude Delta:",
+        "format": "{{msg.payload}}°",
+        "layout": "row-center",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 1120,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "9280a15efa4c16e3",
+        "type": "function",
+        "z": "279dd11f268d0df7",
+        "name": "D long",
+        "func": "function isNumber(value) {\n  return typeof value === 'number';\n}\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload) {\n  msg.payload = {context: \"lat\", data: msg.payload.data.long};\n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"ERR DECODE \" + msg.payload.context;\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 340,
+        "wires": [
+            [
+                "01e58294327efdf1"
+            ]
+        ]
+    },
+    {
+        "id": "01e58294327efdf1",
+        "type": "function",
+        "z": "279dd11f268d0df7",
+        "name": "Clean Float",
+        "func": "// Returns a properly formatted float (:.1f), 1 decimal precision\n\nfunction isNumber(value) {\n  return typeof value === 'number';\n}\n\n// Check if msg.payload exists and has the required properties\nif (msg.payload) {\n    // Round to nearest tenth\n    msg.payload = Math.round(msg.payload.data * 10) / 10;\n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"ERR\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 770,
+        "y": 340,
+        "wires": [
+            [
+                "256ef0de216fc9ae",
+                "91df2941f4e071b2"
+            ]
+        ]
+    },
+    {
+        "id": "256ef0de216fc9ae",
+        "type": "ui_text",
+        "z": "279dd11f268d0df7",
+        "group": "47c702718724f863",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Longitude Delta:",
+        "format": "{{msg.payload}}°",
+        "layout": "row-center",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 1120,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "2a0b268173c2732d",
+        "type": "ui_text",
+        "z": "279dd11f268d0df7",
+        "group": "47c702718724f863",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "N Distance",
+        "format": "{{msg.payload}}m",
+        "layout": "row-center",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 1330,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "6666d1eb5d6a8132",
+        "type": "function",
+        "z": "279dd11f268d0df7",
+        "name": "Const Mult",
+        "func": "msg.payload = msg.payload * 111111\nmsg.payload = Math.round(msg.payload * 10) / 10;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1010,
+        "y": 360,
+        "wires": [
+            [
+                "2a0b268173c2732d"
+            ]
+        ]
+    },
+    {
+        "id": "91df2941f4e071b2",
+        "type": "function",
+        "z": "279dd11f268d0df7",
+        "name": "Const Mult",
+        "func": "msg.payload = msg.payload * 111111\nmsg.payload = Math.round(msg.payload * 10) / 10;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1010,
+        "y": 400,
+        "wires": [
+            [
+                "9b922b75773d30c4"
+            ]
+        ]
+    },
+    {
+        "id": "9b922b75773d30c4",
+        "type": "ui_text",
+        "z": "279dd11f268d0df7",
+        "group": "47c702718724f863",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "S Distance",
+        "format": "{{msg.payload}}m",
+        "layout": "row-center",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 1330,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "7dcfe20c6c94d4cf",
+        "type": "inject",
+        "z": "a3832ee5d563a633",
+        "name": "ENABLE GRAPHS",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"data\":true,\"context\":\"enable_graph\"}",
+        "payloadType": "json",
+        "x": 230,
+        "y": 180,
+        "wires": [
+            [
+                "f2dc6c1da6e5a2f2",
+                "ce9a21b3062f0f54",
+                "eac46414ffdab55a"
+            ]
+        ]
+    },
+    {
+        "id": "f2dc6c1da6e5a2f2",
+        "type": "link out",
+        "z": "a3832ee5d563a633",
+        "name": "Enable graph",
+        "mode": "link",
+        "links": [
+            "954b99f22c5618f0",
+            "b5faea71e6e69eb2",
+            "f1a2638052a08d01"
+        ],
+        "x": 425,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "3e3b420f57252746",
+        "type": "inject",
+        "z": "a3832ee5d563a633",
+        "name": "DISABLE GRAPHS",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"data\":false,\"context\":\"enable_graph\"}",
+        "payloadType": "json",
+        "x": 230,
+        "y": 240,
+        "wires": [
+            [
+                "f2dc6c1da6e5a2f2",
+                "b459043870f3a96e"
+            ]
+        ]
+    },
+    {
+        "id": "ce9a21b3062f0f54",
+        "type": "change",
+        "z": "a3832ee5d563a633",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Navigate to Home > Graphs to view graph data.",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 560,
+        "y": 180,
+        "wires": [
+            [
+                "381b4b8ca49815e1"
+            ]
+        ]
+    },
+    {
+        "id": "381b4b8ca49815e1",
+        "type": "ui_toast",
+        "z": "a3832ee5d563a633",
+        "position": "top right",
+        "displayTime": "5",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "Graphs enabled!",
+        "name": "",
+        "x": 780,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "c2bed5ab7421610c",
+        "type": "inject",
+        "z": "a3832ee5d563a633",
+        "name": "CLEAR GRAPHS",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "[]",
+        "payloadType": "json",
+        "x": 220,
+        "y": 360,
+        "wires": [
+            [
+                "a0cc86e0b50faa78",
+                "80cb8b3145aa36bb"
+            ]
+        ]
+    },
+    {
+        "id": "a0cc86e0b50faa78",
+        "type": "link out",
+        "z": "a3832ee5d563a633",
+        "name": "Clear Graph",
+        "mode": "link",
+        "links": [
+            "54ed8139e3f0d2cb",
+            "98e2f762eb4a03a1"
+        ],
+        "x": 385,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "80cb8b3145aa36bb",
+        "type": "change",
+        "z": "a3832ee5d563a633",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Graph data has been cleared",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 460,
+        "y": 420,
+        "wires": [
+            [
+                "49db7c9c2cba3ffb"
+            ]
+        ]
+    },
+    {
+        "id": "49db7c9c2cba3ffb",
+        "type": "ui_toast",
+        "z": "a3832ee5d563a633",
+        "position": "top right",
+        "displayTime": "5",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 640,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "9e1f1c17c61ed4b2",
+        "type": "ui_text",
+        "z": "a3832ee5d563a633",
+        "group": "5a4020c2.81e",
+        "order": 2,
         "width": "14",
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "39a992f2d865055f",
-        "type": "mqtt-broker",
+        "height": "1",
         "name": "",
-        "broker": "192.168.0.100",
-        "port": "1883",
-        "clientid": "",
-        "autoConnect": true,
-        "usetls": false,
-        "protocolVersion": "4",
-        "keepalive": "60",
-        "cleansession": true,
-        "autoUnsubscribe": true,
-        "birthTopic": "",
-        "birthQos": "0",
-        "birthRetain": "false",
-        "birthPayload": "",
-        "birthMsg": {},
-        "closeTopic": "",
-        "closeQos": "0",
-        "closeRetain": "false",
-        "closePayload": "",
-        "closeMsg": {},
-        "willTopic": "",
-        "willQos": "0",
-        "willRetain": "false",
-        "willPayload": "",
-        "willMsg": {},
-        "userProps": "",
-        "sessionExpiry": ""
+        "label": "Graph System Status:",
+        "format": "{{msg.payload}}",
+        "layout": "row-center",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "8",
+        "color": "#ffffff",
+        "x": 800,
+        "y": 220,
+        "wires": []
     },
     {
-        "id": "35848f461ab4285c",
-        "type": "ui_group",
-        "name": "Status",
-        "tab": "385027e716d09b2e",
-        "order": 1,
-        "disp": true,
+        "id": "eac46414ffdab55a",
+        "type": "change",
+        "z": "a3832ee5d563a633",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "ENABLED",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 560,
+        "y": 220,
+        "wires": [
+            [
+                "9e1f1c17c61ed4b2",
+                "789d8c9b67197268"
+            ]
+        ]
+    },
+    {
+        "id": "b459043870f3a96e",
+        "type": "change",
+        "z": "a3832ee5d563a633",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "DISABLED",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 560,
+        "y": 280,
+        "wires": [
+            [
+                "9e1f1c17c61ed4b2",
+                "789d8c9b67197268"
+            ]
+        ]
+    },
+    {
+        "id": "47c7f79ea6cbc48c",
+        "type": "inject",
+        "z": "a3832ee5d563a633",
+        "name": "CLEAR LOGS",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "[]",
+        "payloadType": "json",
+        "x": 210,
+        "y": 780,
+        "wires": [
+            [
+                "53b714a7566a2d05",
+                "c128e6a3c7e97067",
+                "f92c5dc3cd717bd6"
+            ]
+        ]
+    },
+    {
+        "id": "0b680ca49c7c4429",
+        "type": "file",
+        "z": "a3832ee5d563a633",
+        "name": "",
+        "filename": "C:\\Users\\mpkar\\Documents\\ISS\\GSS_LOGS\\json_log.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 770,
+        "y": 880,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "70c78056887bc604",
+        "type": "file",
+        "z": "a3832ee5d563a633",
+        "name": "",
+        "filename": "C:\\Users\\mpkar\\Documents\\ISS\\GSS_LOGS\\csv_log.csv",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1030,
+        "y": 780,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "53b714a7566a2d05",
+        "type": "change",
+        "z": "a3832ee5d563a633",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"type\":\"data\",\"value\":{\"IMU_mx\":0.8855195169413189,\"IMU_my\":-0.46460217941375737,\"IMU_mz\":-0.41141429748435443,\"IMU_gx\":0.8855195169413189,\"IMU_gy\":-0.46460217941375737,\"IMU_gz\":-0.41141429748435443,\"KX_IMU_ax\":0.8855195169413189,\"KX_IMU_ay\":-0.46460217941375737,\"KX_IMU_az\":-0.41141429748435443,\"gps_lat\":41.77515851951694,\"gps_long\":-86.57289960217942,\"gps_alt\":17400,\"STE_ALT\":0.8855195169413189,\"STE_VEL\":-0.46460217941375737,\"STE_ACC\":-0.41141429748435443,\"STE_APO\":-0.8228285949687089,\"BNO_YAW\":0.8855195169413189,\"BNO_PITCH\":-0.46460217941375737,\"BNO_ROLL\":0.42091733752756155,\"RSSI\":0.8855195169413189,\"sign\":\"qxqxlol\",\"FSM_state\":5.800000000000001,\"Voltage\":0.8855195169413189,\"TEMP\":0.8855195169413189,\"frequency\":0.8855195169413189,\"flap_extension\":-0.5246662219468002,\"pressure\":918,\"Continuity1\":0.8855195169413189,\"Continuity2\":-0.46460217941375737,\"Continuity3\":0.8855195169413189,\"Continuity4\":-0.46460217941375737,\"TelemLatency\":0.8855195169413189,\"Pyro1\":0.8855195169413189,\"Pyro2\":-0.46460217941375737,\"Pyro3\":0.8855195169413189,\"Pyro4\":-0.46460217941375737,\"Pyro1Firing\":0.8855195169413189,\"Pyro2Firing\":-0.46460217941375737,\"Pyro3Firing\":0.8855195169413189,\"Pyro4Firing\":-0.46460217941375737,\"is_booster\":false}}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 420,
+        "y": 780,
+        "wires": [
+            [
+                "47829d6f57f9f3df"
+            ]
+        ]
+    },
+    {
+        "id": "c128e6a3c7e97067",
+        "type": "change",
+        "z": "a3832ee5d563a633",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Flight log has been cleared",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 420,
+        "y": 940,
+        "wires": [
+            [
+                "9d567eceb294340d"
+            ]
+        ]
+    },
+    {
+        "id": "9d567eceb294340d",
+        "type": "ui_toast",
+        "z": "a3832ee5d563a633",
+        "position": "top right",
+        "displayTime": "5",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 640,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "3fbbffaada7289ed",
+        "type": "inject",
+        "z": "a3832ee5d563a633",
+        "name": "ENABLE LOGGING",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"data\":true,\"context\":\"enable_log\"}",
+        "payloadType": "json",
+        "x": 230,
+        "y": 560,
+        "wires": [
+            [
+                "589911925ca3e832",
+                "6208358474682f9b",
+                "c9d72a9c52409563"
+            ]
+        ]
+    },
+    {
+        "id": "589911925ca3e832",
+        "type": "link out",
+        "z": "a3832ee5d563a633",
+        "name": "Enable log",
+        "mode": "link",
+        "links": [
+            "941eb68e3df9dd76"
+        ],
+        "x": 455,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "84f5076cdb70125c",
+        "type": "inject",
+        "z": "a3832ee5d563a633",
+        "name": "DISABLE LOGGING",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"data\":false,\"context\":\"enable_log\"}",
+        "payloadType": "json",
+        "x": 230,
+        "y": 640,
+        "wires": [
+            [
+                "589911925ca3e832",
+                "c073ad141694a9dc",
+                "5ffcb2a2bce80b9f"
+            ]
+        ]
+    },
+    {
+        "id": "6208358474682f9b",
+        "type": "change",
+        "z": "a3832ee5d563a633",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Flight Logging has been enabled",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 520,
+        "y": 560,
+        "wires": [
+            [
+                "9a0f0de8f77ae9b4"
+            ]
+        ]
+    },
+    {
+        "id": "9a0f0de8f77ae9b4",
+        "type": "ui_toast",
+        "z": "a3832ee5d563a633",
+        "position": "top right",
+        "displayTime": "5",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 720,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "c073ad141694a9dc",
+        "type": "change",
+        "z": "a3832ee5d563a633",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Flight Logging has been disabled",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 520,
+        "y": 600,
+        "wires": [
+            [
+                "9a0f0de8f77ae9b4"
+            ]
+        ]
+    },
+    {
+        "id": "47829d6f57f9f3df",
+        "type": "function",
+        "z": "a3832ee5d563a633",
+        "name": "Decode FD to CSV:key",
+        "func": "\n// Check if msg.payload exists and has the required properties\nif (msg.payload) {\n    let csv_out = \"\";\n\n    Object.entries(msg.payload.value).forEach(function([key, val]) {\n        csv_out += key + \",\";\n    });\n\n    msg.payload = csv_out.substring(0, csv_out.length - 1);;\n    \n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"Error: Invalid payload structure\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 670,
+        "y": 780,
+        "wires": [
+            [
+                "70c78056887bc604"
+            ]
+        ]
+    },
+    {
+        "id": "3e2b63f2e59d87c4",
+        "type": "comment",
+        "z": "a3832ee5d563a633",
+        "name": "IMPORTANT!!",
+        "info": "Set above node to sample packet\n\nDebug >> copy >> paste into JSON editor",
+        "x": 410,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "f92c5dc3cd717bd6",
+        "type": "change",
+        "z": "a3832ee5d563a633",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 420,
+        "y": 880,
+        "wires": [
+            [
+                "0b680ca49c7c4429"
+            ]
+        ]
+    },
+    {
+        "id": "b35401c13991c5b7",
+        "type": "inject",
+        "z": "a3832ee5d563a633",
+        "name": "Startup State",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.5",
+        "topic": "",
+        "payload": "{\"data\":false,\"context\":\"enable_log\"}",
+        "payloadType": "json",
+        "x": 315,
+        "y": 680,
+        "wires": [
+            [
+                "589911925ca3e832",
+                "5ffcb2a2bce80b9f"
+            ]
+        ],
+        "icon": "node-red-dashboard/ui_template.png",
+        "l": false
+    },
+    {
+        "id": "d06801bac97bc229",
+        "type": "inject",
+        "z": "a3832ee5d563a633",
+        "name": "Startup State",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.5",
+        "topic": "",
+        "payload": "{\"data\":false,\"context\":\"enable_log\"}",
+        "payloadType": "json",
+        "x": 305,
+        "y": 280,
+        "wires": [
+            [
+                "f2dc6c1da6e5a2f2",
+                "b459043870f3a96e"
+            ]
+        ],
+        "icon": "node-red-dashboard/ui_template.png",
+        "l": false
+    },
+    {
+        "id": "789d8c9b67197268",
+        "type": "ui_text",
+        "z": "a3832ee5d563a633",
+        "group": "35848f461ab4285c",
+        "order": 2,
         "width": "6",
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "6b9d9bbc1fd214eb",
-        "type": "mqtt-broker",
+        "height": "1",
         "name": "",
-        "broker": "localhost",
-        "port": "1883",
-        "clientid": "",
-        "autoConnect": true,
-        "usetls": false,
-        "protocolVersion": "4",
-        "keepalive": "60",
-        "cleansession": true,
-        "birthTopic": "",
-        "birthQos": "0",
-        "birthPayload": "",
-        "birthMsg": {},
-        "closeTopic": "",
-        "closeQos": "0",
-        "closePayload": "",
-        "closeMsg": {},
-        "willTopic": "",
-        "willQos": "0",
-        "willPayload": "",
-        "willMsg": {},
-        "userProps": "",
-        "sessionExpiry": ""
+        "label": "Graph System Status:",
+        "format": "{{msg.payload}}",
+        "layout": "row-center",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "8",
+        "color": "#ffffff",
+        "x": 800,
+        "y": 260,
+        "wires": []
     },
     {
-        "id": "152d9aec61c24f73",
-        "type": "ui_tab",
-        "name": "Home",
-        "icon": "dashboard",
-        "disabled": false,
-        "hidden": false
+        "id": "c9d72a9c52409563",
+        "type": "change",
+        "z": "a3832ee5d563a633",
+        "name": "Text Status Update : ENABLE",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "ENABLED",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 570,
+        "y": 520,
+        "wires": [
+            [
+                "5d7d1d466276f2ba"
+            ]
+        ]
     },
     {
-        "id": "352010d7.7bdd4",
-        "type": "ui_tab",
-        "name": "Live Video",
-        "icon": "fa-video-camera",
-        "disabled": false,
-        "hidden": false
+        "id": "5ffcb2a2bce80b9f",
+        "type": "change",
+        "z": "a3832ee5d563a633",
+        "name": "Text Status Update : DISABLE",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "DISABLED",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 570,
+        "y": 640,
+        "wires": [
+            [
+                "5d7d1d466276f2ba"
+            ]
+        ]
     },
     {
-        "id": "4b1f5d5c.eddd44",
-        "type": "ui_tab",
-        "name": "Graphs",
-        "icon": "fa-line-chart ",
-        "disabled": false,
-        "hidden": false
+        "id": "5d7d1d466276f2ba",
+        "type": "ui_text",
+        "z": "a3832ee5d563a633",
+        "group": "35848f461ab4285c",
+        "order": 2,
+        "width": "6",
+        "height": "1",
+        "name": "",
+        "label": "Logging System Status:",
+        "format": "{{msg.payload}}",
+        "layout": "row-center",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "8",
+        "color": "#ffffff",
+        "x": 1050,
+        "y": 520,
+        "wires": []
     },
     {
-        "id": "385027e716d09b2e",
-        "type": "ui_tab",
-        "name": "Ground Station Systems",
-        "icon": "fa-bug",
-        "disabled": false,
-        "hidden": false
+        "id": "a709a0979589a01a",
+        "type": "comment",
+        "z": "a3832ee5d563a633",
+        "name": "GRAPHS -- ENABLE BEFORE LAUNCH!",
+        "info": "",
+        "x": 280,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "148e974b42a72690",
+        "type": "comment",
+        "z": "a3832ee5d563a633",
+        "name": "LOGGING -- MUST ENABLE BEFORE LAUNCH!",
+        "info": "",
+        "x": 300,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "b122be50e9619e39",
+        "type": "ui_text",
+        "z": "a3832ee5d563a633",
+        "group": "35848f461ab4285c",
+        "order": 2,
+        "width": "6",
+        "height": "2",
+        "name": "Explanation -- debug",
+        "label": "This is a debug view of all ground station systems.",
+        "format": "",
+        "layout": "row-center",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "8",
+        "color": "#ffffff",
+        "x": 1020,
+        "y": 220,
+        "wires": []
     }
 ]
