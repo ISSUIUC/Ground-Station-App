@@ -98,7 +98,7 @@ class Camera:
         cv2.destroyAllWindows()
 
 print("Opening camera stream..")
-camera = Camera(1)
+camera = Camera(0)
 print("Opened camera stream.")
 thread = threading.Thread(target=camera.capture_frames)
 thread.daemon = True
