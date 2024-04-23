@@ -1,0 +1,631 @@
+[
+    {
+        "id": "a3832ee5d563a633",
+        "type": "tab",
+        "label": "CONTROL DASHBOARD",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "7dcfe20c6c94d4cf",
+        "type": "inject",
+        "z": "a3832ee5d563a633",
+        "name": "ENABLE GRAPHS",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"data\":true,\"context\":\"enable_graph\"}",
+        "payloadType": "json",
+        "x": 230,
+        "y": 180,
+        "wires": [
+            [
+                "f2dc6c1da6e5a2f2",
+                "ce9a21b3062f0f54",
+                "eac46414ffdab55a"
+            ]
+        ]
+    },
+    {
+        "id": "f2dc6c1da6e5a2f2",
+        "type": "link out",
+        "z": "a3832ee5d563a633",
+        "name": "Enable graph",
+        "mode": "link",
+        "links": [
+            "954b99f22c5618f0",
+            "b5faea71e6e69eb2"
+        ],
+        "x": 425,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "3e3b420f57252746",
+        "type": "inject",
+        "z": "a3832ee5d563a633",
+        "name": "DISABLE GRAPHS",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"data\":false,\"context\":\"enable_graph\"}",
+        "payloadType": "json",
+        "x": 230,
+        "y": 240,
+        "wires": [
+            [
+                "f2dc6c1da6e5a2f2",
+                "b459043870f3a96e"
+            ]
+        ]
+    },
+    {
+        "id": "ce9a21b3062f0f54",
+        "type": "change",
+        "z": "a3832ee5d563a633",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Navigate to Home > Graphs to view graph data.",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 560,
+        "y": 180,
+        "wires": [
+            [
+                "381b4b8ca49815e1"
+            ]
+        ]
+    },
+    {
+        "id": "381b4b8ca49815e1",
+        "type": "ui_toast",
+        "z": "a3832ee5d563a633",
+        "position": "top right",
+        "displayTime": "5",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "Graphs enabled!",
+        "name": "",
+        "x": 780,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "c2bed5ab7421610c",
+        "type": "inject",
+        "z": "a3832ee5d563a633",
+        "name": "CLEAR GRAPHS",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "[]",
+        "payloadType": "json",
+        "x": 220,
+        "y": 360,
+        "wires": [
+            [
+                "a0cc86e0b50faa78",
+                "80cb8b3145aa36bb"
+            ]
+        ]
+    },
+    {
+        "id": "a0cc86e0b50faa78",
+        "type": "link out",
+        "z": "a3832ee5d563a633",
+        "name": "Clear Graph",
+        "mode": "link",
+        "links": [
+            "54ed8139e3f0d2cb"
+        ],
+        "x": 385,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "80cb8b3145aa36bb",
+        "type": "change",
+        "z": "a3832ee5d563a633",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Graph data has been cleared",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 460,
+        "y": 420,
+        "wires": [
+            [
+                "49db7c9c2cba3ffb"
+            ]
+        ]
+    },
+    {
+        "id": "49db7c9c2cba3ffb",
+        "type": "ui_toast",
+        "z": "a3832ee5d563a633",
+        "position": "top right",
+        "displayTime": "5",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 640,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "9e1f1c17c61ed4b2",
+        "type": "ui_text",
+        "z": "a3832ee5d563a633",
+        "group": "5a4020c2.81e",
+        "order": 2,
+        "width": "14",
+        "height": "1",
+        "name": "",
+        "label": "Graph System Status:",
+        "format": "{{msg.payload}}",
+        "layout": "row-center",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "8",
+        "color": "#ffffff",
+        "x": 800,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "eac46414ffdab55a",
+        "type": "change",
+        "z": "a3832ee5d563a633",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Enabled",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 560,
+        "y": 220,
+        "wires": [
+            [
+                "9e1f1c17c61ed4b2"
+            ]
+        ]
+    },
+    {
+        "id": "b459043870f3a96e",
+        "type": "change",
+        "z": "a3832ee5d563a633",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Disabled",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 560,
+        "y": 280,
+        "wires": [
+            [
+                "9e1f1c17c61ed4b2"
+            ]
+        ]
+    },
+    {
+        "id": "47c7f79ea6cbc48c",
+        "type": "inject",
+        "z": "a3832ee5d563a633",
+        "name": "CLEAR LOGS",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "[]",
+        "payloadType": "json",
+        "x": 190,
+        "y": 680,
+        "wires": [
+            [
+                "53b714a7566a2d05",
+                "c128e6a3c7e97067",
+                "f92c5dc3cd717bd6"
+            ]
+        ]
+    },
+    {
+        "id": "0b680ca49c7c4429",
+        "type": "file",
+        "z": "a3832ee5d563a633",
+        "name": "",
+        "filename": "C:\\Users\\mpkar\\Documents\\ISS\\GSS_LOGS\\json_log.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 750,
+        "y": 780,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "70c78056887bc604",
+        "type": "file",
+        "z": "a3832ee5d563a633",
+        "name": "",
+        "filename": "C:\\Users\\mpkar\\Documents\\ISS\\GSS_LOGS\\csv_log.csv",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1010,
+        "y": 680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "53b714a7566a2d05",
+        "type": "change",
+        "z": "a3832ee5d563a633",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"type\":\"data\",\"value\":{\"IMU_mx\":0.8855195169413189,\"IMU_my\":-0.46460217941375737,\"IMU_mz\":-0.41141429748435443,\"IMU_gx\":0.8855195169413189,\"IMU_gy\":-0.46460217941375737,\"IMU_gz\":-0.41141429748435443,\"KX_IMU_ax\":0.8855195169413189,\"KX_IMU_ay\":-0.46460217941375737,\"KX_IMU_az\":-0.41141429748435443,\"gps_lat\":41.77515851951694,\"gps_long\":-86.57289960217942,\"gps_alt\":17400,\"STE_ALT\":0.8855195169413189,\"STE_VEL\":-0.46460217941375737,\"STE_ACC\":-0.41141429748435443,\"STE_APO\":-0.8228285949687089,\"BNO_YAW\":0.8855195169413189,\"BNO_PITCH\":-0.46460217941375737,\"BNO_ROLL\":0.42091733752756155,\"RSSI\":0.8855195169413189,\"sign\":\"qxqxlol\",\"FSM_state\":5.800000000000001,\"Voltage\":0.8855195169413189,\"TEMP\":0.8855195169413189,\"frequency\":0.8855195169413189,\"flap_extension\":-0.5246662219468002,\"pressure\":918,\"Continuity1\":0.8855195169413189,\"Continuity2\":-0.46460217941375737,\"Continuity3\":0.8855195169413189,\"Continuity4\":-0.46460217941375737,\"TelemLatency\":0.8855195169413189,\"Pyro1\":0.8855195169413189,\"Pyro2\":-0.46460217941375737,\"Pyro3\":0.8855195169413189,\"Pyro4\":-0.46460217941375737,\"Pyro1Firing\":0.8855195169413189,\"Pyro2Firing\":-0.46460217941375737,\"Pyro3Firing\":0.8855195169413189,\"Pyro4Firing\":-0.46460217941375737,\"is_booster\":false}}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 400,
+        "y": 680,
+        "wires": [
+            [
+                "47829d6f57f9f3df"
+            ]
+        ]
+    },
+    {
+        "id": "c128e6a3c7e97067",
+        "type": "change",
+        "z": "a3832ee5d563a633",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Flight log has been cleared",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 400,
+        "y": 840,
+        "wires": [
+            [
+                "9d567eceb294340d"
+            ]
+        ]
+    },
+    {
+        "id": "9d567eceb294340d",
+        "type": "ui_toast",
+        "z": "a3832ee5d563a633",
+        "position": "top right",
+        "displayTime": "5",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 620,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "3fbbffaada7289ed",
+        "type": "inject",
+        "z": "a3832ee5d563a633",
+        "name": "ENABLE LOGGING",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"data\":true,\"context\":\"enable_log\"}",
+        "payloadType": "json",
+        "x": 190,
+        "y": 520,
+        "wires": [
+            [
+                "589911925ca3e832",
+                "6208358474682f9b"
+            ]
+        ]
+    },
+    {
+        "id": "589911925ca3e832",
+        "type": "link out",
+        "z": "a3832ee5d563a633",
+        "name": "Enable log",
+        "mode": "link",
+        "links": [
+            "941eb68e3df9dd76"
+        ],
+        "x": 385,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "84f5076cdb70125c",
+        "type": "inject",
+        "z": "a3832ee5d563a633",
+        "name": "DISABLE LOGGING",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"data\":false,\"context\":\"enable_log\"}",
+        "payloadType": "json",
+        "x": 190,
+        "y": 580,
+        "wires": [
+            [
+                "589911925ca3e832",
+                "c073ad141694a9dc"
+            ]
+        ]
+    },
+    {
+        "id": "6208358474682f9b",
+        "type": "change",
+        "z": "a3832ee5d563a633",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Flight Logging has been enabled",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 440,
+        "y": 520,
+        "wires": [
+            [
+                "9a0f0de8f77ae9b4"
+            ]
+        ]
+    },
+    {
+        "id": "9a0f0de8f77ae9b4",
+        "type": "ui_toast",
+        "z": "a3832ee5d563a633",
+        "position": "top right",
+        "displayTime": "5",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 680,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "c073ad141694a9dc",
+        "type": "change",
+        "z": "a3832ee5d563a633",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Flight Logging has been disabled",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 440,
+        "y": 620,
+        "wires": [
+            [
+                "9a0f0de8f77ae9b4"
+            ]
+        ]
+    },
+    {
+        "id": "47829d6f57f9f3df",
+        "type": "function",
+        "z": "a3832ee5d563a633",
+        "name": "Decode FD to CSV:key",
+        "func": "\n// Check if msg.payload exists and has the required properties\nif (msg.payload) {\n    let csv_out = \"\";\n\n    Object.entries(msg.payload.value).forEach(function([key, val]) {\n        csv_out += key + \",\";\n    });\n\n    msg.payload = csv_out.substring(0, csv_out.length - 1);;\n    \n} else {\n    // Handle the case where the required properties are missing\n    msg.payload = \"Error: Invalid payload structure\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 680,
+        "wires": [
+            [
+                "70c78056887bc604"
+            ]
+        ]
+    },
+    {
+        "id": "3e2b63f2e59d87c4",
+        "type": "comment",
+        "z": "a3832ee5d563a633",
+        "name": "IMPORTANT!!",
+        "info": "Set above node to sample packet\n\nDebug >> copy >> paste into JSON editor",
+        "x": 390,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "f92c5dc3cd717bd6",
+        "type": "change",
+        "z": "a3832ee5d563a633",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 400,
+        "y": 780,
+        "wires": [
+            [
+                "0b680ca49c7c4429"
+            ]
+        ]
+    },
+    {
+        "id": "5a4020c2.81e",
+        "type": "ui_group",
+        "name": "Graphs",
+        "tab": "4b1f5d5c.eddd44",
+        "order": 1,
+        "disp": true,
+        "width": "14",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "4b1f5d5c.eddd44",
+        "type": "ui_tab",
+        "name": "Graphs",
+        "icon": "fa-line-chart ",
+        "disabled": false,
+        "hidden": false
+    }
+]
