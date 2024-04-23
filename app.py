@@ -82,7 +82,7 @@ class Camera:
 
             self.handle_record(frame)
 
-            cv2.imshow('Video output (Streaming to http://localhost:5001/video_feed)',frame)
+            # cv2.imshow('Video output (Streaming to http://localhost:5001/video_feed)',frame)
             cv2.waitKey(1)
             ret, buffer = cv2.imencode('.jpg', frame)
             frame_bytes = buffer.tobytes()
@@ -94,7 +94,7 @@ class Camera:
         with self.lock:
             return self.frames[-1]
         
-    def cleanup():
+    def cleanup(self):
         cv2.destroyAllWindows()
 
 print("Opening camera stream..")
