@@ -3,10 +3,43 @@ import cv2
 import threading
 from gevent.pywsgi import WSGIServer
 import time
+import json
 from datetime import datetime
 import math
+import paho.mqtt.client as mqtt
+import threading
 
-app = Flask(__name__)
+
+
+class MQTTListener(threading.Thread):
+    def __init__(self, uri) -> None:
+        self.__mqttclient = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
+        self.__uri = uri
+        self.__local_uri = uri
+        print("Connecting to broker @ " + str(self.__uri))
+        self.__mqttclient.connect(self.__uri)
+        print("Subscribing to 'Common' stream...")
+    
+        def on_message(client, userdata, msg): 
+            if(str(msg.topic) == "Common"):
+                common_data = json.loads(msg.payload.decode("utf-8"))
+                
+                if(common_data['action'] == "edit_live_mqtt_uri"):
+                    print("Edit mqtt live url to", common_data['data'])
+                    self.__local_uri = common_data['data']
+
+
+        self.__mqttclient.on_message = on_message
+
+        self.__mqttclient.subscribe("Common") 
+        print("Subscribed.")
+
+    def get_local_uri(self):
+        return self.__local_uri
+    
+    def run(self):
+        print("Running MQTT stream")
+        self.__mqttclient.loop_start()
 
 class Camera:
     def __init__(self, capture_index=0):
@@ -97,6 +130,9 @@ class Camera:
     def cleanup():
         cv2.destroyAllWindows()
 
+app = Flask(__name__)
+mqtt_listener = MQTTListener("10.195.167.19") # Default uri
+
 print("Opening camera stream..")
 camera = Camera(0)
 print("Opened camera stream.")
@@ -132,6 +168,10 @@ def start_recording():
     else:
         return  "Unable", 500
     
+@app.route('/mqtt_uri')
+def get_mqtt_uri():
+    return mqtt_listener.get_local_uri(), 200
+
 
 @app.route('/stop_recording')
 def stop_recording():
@@ -139,6 +179,10 @@ def stop_recording():
     return "OK"
 
 if __name__ == '__main__':
+
+    
+    mqtt_listener.run()
+
     print("Initializing http server..")
     http_server = WSGIServer(('0.0.0.0', 5001), app)
     print("Initialized video stream server at localhost:5001")
