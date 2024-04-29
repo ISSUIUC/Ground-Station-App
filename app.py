@@ -115,7 +115,7 @@ class Camera:
 
             self.handle_record(frame)
 
-            cv2.imshow('Video output (Streaming to http://localhost:5001/video_feed)',frame)
+            # cv2.imshow('Video output (Streaming to http://localhost:5001/video_feed)',frame)
             cv2.waitKey(1)
             ret, buffer = cv2.imencode('.jpg', frame)
             frame_bytes = buffer.tobytes()
